@@ -1,5 +1,6 @@
 import { IMattrViiClient } from "mattr-vii-types";
 import * as DidServices from "./services/platform-core/dids.service";
+import * as MessagingService from "./services/platform-core/messaging.service";
 
 export class MattrViiClient {
   constructor(public readonly auth: IMattrViiClient) {}
@@ -7,7 +8,7 @@ export class MattrViiClient {
   public get PlatformCoreService() {
     return {
       DIDs: DidServices,
-      Messaging: {},
+      Messaging: MessagingService,
       Webhooks: {},
     };
   }
