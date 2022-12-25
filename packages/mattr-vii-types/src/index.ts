@@ -7,4 +7,4 @@ export const subtract = (a: number, b: number) => {
 };
 
 export * from "./setup";
-export * from "./dids";
+export * from "./platform-core";
