@@ -23,31 +23,31 @@ export namespace MattrViiClient {
         return "presentation_template";
       };
       export const createPresentationRequest = () => {
-        return 'presentation_request'
-      }
+        return "presentation_request";
+      };
     }
     export namespace Credentials {
-        export const createCredential = () => {
-            return 'credential_created'
-        }
+      export const createCredential = () => {
+        return "credential_created";
+      };
     }
   }
   export namespace CompactCredentials {
     export namespace Core {
       export const createCompactCredential = () => {
-        return 'createCompactCredential';
-      }
+        return "createCompactCredential";
+      };
       export const verifyCompactCredential = () => {
-        return 'verifyCompactCredential'
-      }
+        return "verifyCompactCredential";
+      };
     }
     export namespace PdfTemplatemanagement {
       export const listPdfTemplates = () => {
-        return 'listPdfTemplates'
-      }
+        return "listPdfTemplates";
+      };
       export const updatePdfTemplate = () => {
-        return 'updatePdfTemplate'
-      }
+        return "updatePdfTemplate";
+      };
     }
   }
 }
