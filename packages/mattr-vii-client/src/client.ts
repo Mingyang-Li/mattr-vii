@@ -1,6 +1,7 @@
 import { IAuth } from "mattr-vii-types";
-import * as DidServices from "@/services/platform-core/dids.service";
-import * as MessagingService from "@/services/platform-core/messaging.service";
+import * as DidServices from "@/services/platform-core/did.service";
+import * as MessagingServices from "@/services/platform-core/messaging.service";
+import * as WebhookServices from "@/services/platform-core/webhook.service";
 
 export class MattrViiClient {
   constructor(public readonly auth: IAuth) {}
@@ -8,8 +9,8 @@ export class MattrViiClient {
   public get PlatformCoreService() {
     return {
       DIDs: DidServices,
-      Messaging: MessagingService,
-      Webhooks: {},
+      Messaging: MessagingServices,
+      Webhooks: WebhookServices,
     };
   }
 
@@ -34,10 +35,3 @@ export class MattrViiClient {
 }
 
 const client = new MattrViiClient({ tenantUrl: "e", authToken: "s" });
-
-const did = client.PlatformCoreService.Messaging.createInbox(client.auth, {
-  id: "s",
-  inboxId: "s",
-  payload: "s",
-  createdAt: new Date(),
-});
