@@ -1,7 +1,7 @@
 import {
   CreateDidReqBody,
   CreateDidReqResponse,
-  IMattrViiClient,
+  IAuth,
   ResolveDidReqResponse,
   RetrieveDidsReqQuery,
   RetrieveDidsReqResponse,
@@ -9,7 +9,7 @@ import {
 } from "mattr-vii-types";
 
 const createDid = async (
-  auth: IMattrViiClient,
+  auth: IAuth,
   args: CreateDidReqBody
 ): Promise<CreateDidReqResponse> => {
   const resp = await fetch(
@@ -27,7 +27,7 @@ const createDid = async (
 };
 
 const retrieveDids = async (
-  auth: IMattrViiClient,
+  auth: IAuth,
   queryArgs?: RetrieveDidsReqQuery
 ): Promise<RetrieveDidsReqResponse> => {
   let url: string;
@@ -53,7 +53,7 @@ const retrieveDids = async (
 };
 
 const resolveDid = async (
-  auth: IMattrViiClient,
+  auth: IAuth,
   id: string
 ): Promise<ResolveDidReqResponse> => {
   const resp = await fetch(
@@ -68,7 +68,7 @@ const resolveDid = async (
   return await resp.json();
 };
 
-const deleteDid = async (auth: IMattrViiClient, id: string) => {
+const deleteDid = async (auth: IAuth, id: string) => {
   const resp = await fetch(
     `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${id}`,
     {
@@ -82,7 +82,7 @@ const deleteDid = async (auth: IMattrViiClient, id: string) => {
 };
 
 const wellKnownDidConfiguration = async (
-  auth: IMattrViiClient
+  auth: IAuth
 ): Promise<WellKnownDidConfigResponse> => {
   const resp = await fetch(
     `https://${auth.tenantUrl}.vii.mattr.global/.well-known/did-configuration`,

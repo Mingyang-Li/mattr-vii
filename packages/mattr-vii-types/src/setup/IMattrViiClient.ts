@@ -1,4 +1,1 @@
-export interface IMattrViiClient {
-  tenantUrl: string;
-  authToken: string;
-}
+export interface IMattrViiClient {}

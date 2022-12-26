@@ -1,13 +1,14 @@
 import {
   CreateInboxReqBody,
   CreateInboxReqResponse,
-  IMattrViiClient,
+  IAuth,
   ListInboxesReqQuery,
   ListInboxesReqResponse,
+  RetrieveInboxNameReqResponse,
 } from "mattr-vii-types";
 
 const createInbox = async (
-  auth: IMattrViiClient,
+  auth: IAuth,
   args: CreateInboxReqBody
 ): Promise<CreateInboxReqResponse> => {
   const resp = await fetch(
@@ -25,7 +26,7 @@ const createInbox = async (
 };
 
 const listInboxs = async (
-  auth: IMattrViiClient,
+  auth: IAuth,
   queryArgs: ListInboxesReqQuery
 ): Promise<ListInboxesReqResponse> => {
   let url: string;
@@ -49,8 +50,20 @@ const listInboxs = async (
   return await resp.json();
 };
 
-const retrieveInboxName = async () => {
-  return;
+const retrieveInboxName = async (
+  auth: IAuth,
+  id: string
+): Promise<RetrieveInboxNameReqResponse> => {
+  const resp = await fetch(
+    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${id}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+    }
+  );
+  return await resp.json();
 };
 const updateInbox = async () => {
   return;

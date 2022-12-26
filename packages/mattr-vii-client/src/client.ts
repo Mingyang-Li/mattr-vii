@@ -1,9 +1,9 @@
-import { IMattrViiClient } from "mattr-vii-types";
+import { IAuth } from "mattr-vii-types";
 import * as DidServices from "@/services/platform-core/dids.service";
 import * as MessagingService from "@/services/platform-core/messaging.service";
 
 export class MattrViiClient {
-  constructor(public readonly auth: IMattrViiClient) {}
+  constructor(public readonly auth: IAuth) {}
 
   public get PlatformCoreService() {
     return {
