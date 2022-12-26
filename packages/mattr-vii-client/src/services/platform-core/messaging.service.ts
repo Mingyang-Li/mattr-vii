@@ -3,6 +3,7 @@ import {
   CreateInboxReqResponse,
   IMattrViiClient,
   ListInboxesReqQuery,
+  ListInboxesReqResponse,
 } from "mattr-vii-types";
 
 const createInbox = async (
@@ -26,7 +27,7 @@ const createInbox = async (
 const listInboxs = async (
   auth: IMattrViiClient,
   queryArgs: ListInboxesReqQuery
-) => {
+): Promise<ListInboxesReqResponse> => {
   let url: string;
   switch (queryArgs) {
     case undefined:
