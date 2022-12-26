@@ -1,5 +1,26 @@
-const createInbox = async () => {
-  return;
+import {
+  CreateInboxReqBody,
+  CreateInboxReqResponse,
+  IMattrViiClient,
+} from "mattr-vii-types";
+
+const createInbox = async (
+  auth: IMattrViiClient,
+  args: CreateInboxReqBody
+): Promise<CreateInboxReqResponse> => {
+  const resp = await fetch(
+    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+      body: JSON.stringify(args),
+    }
+  );
+
+  return await resp.json();
 };
 
 const listInboxs = async () => {

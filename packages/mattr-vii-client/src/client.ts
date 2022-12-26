@@ -1,6 +1,6 @@
 import { IMattrViiClient } from "mattr-vii-types";
-import * as DidServices from "./services/platform-core/dids.service";
-import * as MessagingService from "./services/platform-core/messaging.service";
+import * as DidServices from "@/services/platform-core/dids.service";
+import * as MessagingService from "@/services/platform-core/messaging.service";
 
 export class MattrViiClient {
   constructor(public readonly auth: IMattrViiClient) {}
@@ -13,7 +13,7 @@ export class MattrViiClient {
     };
   }
 
-  public get WebSemanticCredentials() {
+  public get WebSemanticCredentialsService() {
     return {
       Credentials: {},
       Revocation: {},
@@ -22,7 +22,7 @@ export class MattrViiClient {
     };
   }
 
-  public get CompactCredentials() {
+  public get CompactCredentialsService() {
     return {
       Core: {},
       PdfTemplateManagement: {},
@@ -35,4 +35,9 @@ export class MattrViiClient {
 
 const client = new MattrViiClient({ tenantUrl: "e", authToken: "s" });
 
-const did = client.PlatformCoreService.DIDs.retrieveDids(client.auth);
+const did = client.PlatformCoreService.Messaging.createInbox(client.auth, {
+  id: "s",
+  inboxId: "s",
+  payload: "s",
+  createdAt: new Date(),
+});
