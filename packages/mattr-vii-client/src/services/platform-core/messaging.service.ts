@@ -2,6 +2,7 @@ import {
   CreateInboxReqBody,
   CreateInboxReqResponse,
   IMattrViiClient,
+  ListInboxesReqQuery,
 } from "mattr-vii-types";
 
 const createInbox = async (
@@ -19,12 +20,32 @@ const createInbox = async (
       body: JSON.stringify(args),
     }
   );
-
   return await resp.json();
 };
 
-const listInboxs = async () => {
-  return;
+const listInboxs = async (
+  auth: IMattrViiClient,
+  queryArgs: ListInboxesReqQuery
+) => {
+  let url: string;
+  switch (queryArgs) {
+    case undefined:
+      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`;
+
+    default:
+      const query = new URLSearchParams({
+        limit: queryArgs!.limit.toString(),
+        cursor: queryArgs!.cursor,
+      }).toString();
+      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes?${query}`;
+  }
+  const resp = await fetch(url, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
 const retrieveInboxName = async () => {

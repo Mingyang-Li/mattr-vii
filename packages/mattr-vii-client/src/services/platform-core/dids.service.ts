@@ -33,13 +33,13 @@ const retrieveDids = async (
   let url: string;
   switch (queryArgs) {
     case undefined:
+      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
+    default:
       const query = new URLSearchParams({
         limit: queryArgs!.limit.toString(),
         cursor: queryArgs!.cursor,
       }).toString();
       url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
-    default:
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
   }
 
   const resp = await fetch(url, {
