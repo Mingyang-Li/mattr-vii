@@ -36,8 +36,8 @@ const retrieveDids = async (
       url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
     default:
       const query = new URLSearchParams({
-        limit: queryArgs!.limit.toString(),
-        cursor: queryArgs!.cursor,
+        limit: queryArgs.limit.toString(),
+        cursor: queryArgs.cursor,
       }).toString();
       url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
   }

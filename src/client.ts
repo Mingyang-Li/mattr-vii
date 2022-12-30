@@ -33,5 +33,3 @@ export class MattrViiClient {
     };
   }
 }
-
-const client = new MattrViiClient({ tenantUrl: 'e', authToken: 's' });
