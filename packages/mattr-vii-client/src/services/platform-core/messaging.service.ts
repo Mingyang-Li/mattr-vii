@@ -5,6 +5,8 @@ import {
   ListInboxesReqQuery,
   ListInboxesReqResponse,
   RetrieveInboxNameReqResponse,
+  UpdateInboxReqResponse,
+  UpdateInbxReqArgs,
 } from "@/dto";
 
 const createInbox = async (
@@ -65,8 +67,21 @@ const retrieveInboxName = async (
   );
   return await resp.json();
 };
-const updateInbox = async () => {
-  return;
+const updateInbox = async (
+  auth: IAuth,
+  args: UpdateInbxReqArgs
+): Promise<UpdateInboxReqResponse> => {
+  const resp = await fetch(
+    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    }
+  );
+  return await resp.json();
 };
 const deleteInbox = async () => {
   return;
