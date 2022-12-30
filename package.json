@@ -1,10 +1,8 @@
 {
-  "name": "client",
+  "name": "mattr-vii-client",
   "version": "0.0.1",
-  "description": "",
+  "description": "Server-side SDK making it easier interacting with APIs across MATTR VII platform",
   "author": "",
-  "private": true,
-  "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
