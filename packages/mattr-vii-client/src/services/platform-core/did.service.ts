@@ -6,7 +6,7 @@ import {
   RetrieveDidsReqQuery,
   RetrieveDidsReqResponse,
   WellKnownDidConfigResponse,
-} from "mattr-vii-types";
+} from "@/dto";
 
 const createDid = async (
   auth: IAuth,

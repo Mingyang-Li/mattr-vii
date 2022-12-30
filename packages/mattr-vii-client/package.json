@@ -2,7 +2,6 @@
   "name": "mattr-vii-client",
   "version": "1.0.0",
   "dependencies": {
-    "typescript": "4.9.4",
-    "mattr-vii-types": "*"
+    "typescript": "4.9.4"
   }
 }

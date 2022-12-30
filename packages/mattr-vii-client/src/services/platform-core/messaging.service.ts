@@ -5,7 +5,7 @@ import {
   ListInboxesReqQuery,
   ListInboxesReqResponse,
   RetrieveInboxNameReqResponse,
-} from "mattr-vii-types";
+} from "@/dto";
 
 const createInbox = async (
   auth: IAuth,
