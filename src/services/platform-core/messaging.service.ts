@@ -9,6 +9,7 @@ import {
   UpdateInboxReqResponse,
   UpdateInbxReqArgs,
 } from '@/dto';
+import { RegisterDidWithInboxReqBody } from '@/dto/platform-core/messaging/register-did-with-inbox/register-did-with-inbox-req-body';
 
 const createInbox = async (
   auth: IAuth,
@@ -100,8 +101,21 @@ const deleteInbox = async (
   return await resp.json();
 };
 
-const registerDidwithInbox = async () => {
-  return;
+const registerDidwithInbox = async (
+  auth: IAuth,
+  body: RegisterDidWithInboxReqBody,
+) => {
+  const resp = await fetch(
+    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${body.did}`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+      body: JSON.stringify(body),
+    },
+  );
+  return await resp.json();
 };
 const listInboxDids = async () => {
   return;

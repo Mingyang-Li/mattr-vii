@@ -7,6 +7,7 @@ import {
   RetrieveDidsReqResponse,
   WellKnownDidConfigResponse,
 } from '@/dto';
+import fetch from 'node-fetch';
 
 const createDid = async (
   auth: IAuth,
