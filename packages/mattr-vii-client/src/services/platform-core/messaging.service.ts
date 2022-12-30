@@ -1,6 +1,7 @@
 import {
   CreateInboxReqBody,
   CreateInboxReqResponse,
+  DeleteInboxReqResponse,
   IAuth,
   ListInboxesReqQuery,
   ListInboxesReqResponse,
@@ -83,8 +84,20 @@ const updateInbox = async (
   );
   return await resp.json();
 };
-const deleteInbox = async () => {
-  return;
+const deleteInbox = async (
+  auth: IAuth,
+  id: string
+): Promise<DeleteInboxReqResponse | void> => {
+  const resp = await fetch(
+    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${id}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+    }
+  );
+  return await resp.json();
 };
 
 const registerDidwithInbox = async () => {
