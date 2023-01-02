@@ -1,8 +1,9 @@
 {
   "name": "mattr-vii-client",
   "version": "0.0.1",
-  "description": "Server-side SDK making it easier interacting with APIs across MATTR VII platform",
-  "author": "",
+  "license": "MIT",
+  "description": "A JavaScript client making it easier to interact with APIs across MATTR VII platform",
+  "author": "Mingyang-Li",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
