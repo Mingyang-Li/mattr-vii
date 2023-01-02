@@ -49,3 +49,42 @@ const did = await client.PlatformCoreService.DIDs.resolveDid(
   'did:key:placeholder',
 );
 ```
+
+😺 Using the SDK NestJS
+```ts
+// mattr.service.ts
+@Injectable()
+export class MattrService extends MattrViiClient {
+  super({
+    tenantUrl: process.env.MATTR_TENANT_URL,
+    authToken: process.env.MATTR_AUTH_TOKEN,
+  })
+}
+
+// user.controller.ts
+@Controller('user')
+export class UserController {
+  constructor(
+    private readonly mattrService: MattrService,
+    private readonly prismaService: PrismaService,
+  ) {};
+
+  @Post('create')
+  public async createUser(@Body body: CreateUserBody) {
+    const body: CreateDidReqBody = {
+      method: 'key',
+      options: {
+        keyType: 'ed25519',
+      },
+    };
+    const did = await client.PlatformCoreService.DIDs.createDid(
+      client.auth,
+      body,
+    );
+    return await this.prismaService.user.create({
+      ...,
+      did: did.did,
+    })
+  }
+}
+```
