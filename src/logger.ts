@@ -10,16 +10,16 @@ const client = new MattrViiClient({
 
 export const main = async () => {
   const body: CreateDidReqBody = {
-    method: 'key',
+    method: 'web',
     options: {
-      keyType: 'ed25519',
+      url: 'google.com',
     },
   };
   const did = await client.PlatformCoreService.DIDs.createDid(
     client.auth,
     body,
   );
-  console.log(did);
+  console.log(JSON.stringify(did));
   // const dids = await client.PlatformCoreService.DIDs.retrieveDids(client.auth, {
   //   cursor:
   //     'Y3JlYXRlZEF0PTIwMjItMTAtMDNUMjMlM0E0NyUzQTEzLjI3MlomaWQ9NjE3NjY2YjctZjI2Ny00ZTM4LTliYmItNzhmNDY4NjA0ZWVl',
