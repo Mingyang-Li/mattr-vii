@@ -37,12 +37,11 @@ const retrieveDids = async (
       url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
     default:
       const query = new URLSearchParams({
-        limit: queryArgs.limit.toString(),
-        cursor: queryArgs.cursor,
+        limit: queryArgs ? queryArgs.limit.toString() : '2',
+        cursor: queryArgs ? queryArgs.cursor : '',
       }).toString();
       url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
   }
-
   const resp = await fetch(url, {
     method: 'GET',
     headers: {
