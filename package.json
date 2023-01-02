@@ -4,6 +4,19 @@
   "license": "MIT",
   "description": "A JavaScript client making it easier to interact with APIs across MATTR VII platform",
   "author": "Mingyang-Li",
+  "homepage": "https://github.com/Mingyang-Li/mattr-vii/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mingyang-Li/mattr-vii.git"
+  },
+  "keywords": [
+    "sdk",
+    "nestjs",
+    "typescript",
+    "verifiable-credentials",
+    "verifiable-data",
+    "self-soverign-identity"
+  ],
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
