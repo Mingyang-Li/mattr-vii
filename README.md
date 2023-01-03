@@ -77,7 +77,7 @@ export class UserController {
         keyType: 'ed25519',
       },
     };
-    const did = await client.PlatformCoreService.DIDs.createDid(
+    const did = await this.mattrService.PlatformCoreService.DIDs.createDid(
       client.auth,
       body,
     );
