@@ -5,6 +5,7 @@ import {
   DeleteInboxReqResponse,
   ListInboxesArgs,
   ListInboxesReqResponse,
+  RegisterDidWithInboxReqResponse,
   RegisterInboxWithDidArgs,
   RetrieveInboxNameArgs,
   RetrieveInboxNameReqResponse,
@@ -97,7 +98,9 @@ const deleteInbox = async (
   return await resp.json();
 };
 
-const registerDidwithInbox = async (args: RegisterInboxWithDidArgs) => {
+const registerDidwithInbox = async (
+  args: RegisterInboxWithDidArgs,
+): Promise<RegisterDidWithInboxReqResponse> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.body.did}`,
     {

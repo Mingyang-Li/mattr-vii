@@ -17,11 +17,8 @@ export const createDid_key = async () => {
       keyType: 'ed25519',
     },
   };
-  const did = await client.PlatformCoreService.DIDs.createDid({
-    auth,
-    body,
-  });
-  console.log(JSON.stringify(did));
+  const did = await client.PlatformCoreService.DIDs.createDid({ auth, body });
+  console.log(did);
 };
 
 export const createDid_ion = async () => {
@@ -31,10 +28,7 @@ export const createDid_ion = async () => {
       keyType: 'bls12381g2',
     },
   };
-  const did = await client.PlatformCoreService.DIDs.createDid({
-    auth,
-    body,
-  });
+  const did = await client.PlatformCoreService.DIDs.createDid({ auth, body });
   console.log(JSON.stringify(did));
 };
 
