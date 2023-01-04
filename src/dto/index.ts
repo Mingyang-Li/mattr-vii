@@ -1,2 +1,2 @@
-export * from "./setup";
-export * from "./platform-core";
+export * from './setup';
+export * from './platform-core';

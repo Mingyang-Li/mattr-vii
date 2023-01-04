@@ -1,2 +1,2 @@
-export * from "./dids";
-export * from "./messaging";
+export * from './dids';
+export * from './messaging';
