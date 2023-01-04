@@ -1,6 +1,6 @@
 export interface CreateInboxReqBody {
-  id: string;
-  inboxId: string;
-  payload: string;
-  createdAt: Date;
+  id?: string;
+  inboxId?: string;
+  payload?: string;
+  createdAt?: Date;
 }
