@@ -43,3 +43,14 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
 const did = await client.PlatformCore.DIDs.createDid({ auth, body });
 ```
 
+```ts
+// Resolve a DID
+const id = 'did:key:placeholder';
+const did = await client.PlatformCore.DIDs.resolveDid({ auth, id });
+```
+
+```ts
+// Retrieve DIDs
+const id = 'did:key:placeholder';
+const dids = await client.PlatformCore.DIDs.retrieveDids({ auth });
+```
