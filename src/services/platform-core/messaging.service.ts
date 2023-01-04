@@ -1,14 +1,16 @@
 import {
   CreateInboxArgs,
   CreateInboxReqResponse,
+  DeleteInboxArgs,
   DeleteInboxReqResponse,
   IAuth,
   ListInboxesArgs,
-  ListInboxesReqQuery,
   ListInboxesReqResponse,
+  RegisterInboxWithDidArgs,
+  RetrieveInboxNameArgs,
   RetrieveInboxNameReqResponse,
+  UpdateInboxArgs,
   UpdateInboxReqResponse,
-  UpdateInbxReqArgs,
 } from '@/dto';
 import { RegisterDidWithInboxReqBody } from '@/dto/platform-core/messaging/register-did-with-inbox/register-did-with-inbox-req-body';
 
@@ -53,10 +55,9 @@ const listInboxs = async (
   return await resp.json();
 };
 
-const retrieveInboxName = async (args: {
-  auth: IAuth;
-  id: string;
-}): Promise<RetrieveInboxNameReqResponse> => {
+const retrieveInboxName = async (
+  args: RetrieveInboxNameArgs,
+): Promise<RetrieveInboxNameReqResponse> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
     {
@@ -68,10 +69,9 @@ const retrieveInboxName = async (args: {
   );
   return await resp.json();
 };
-const updateInbox = async (args: {
-  auth: IAuth;
-  args: UpdateInbxReqArgs;
-}): Promise<UpdateInboxReqResponse> => {
+const updateInbox = async (
+  args: UpdateInboxArgs,
+): Promise<UpdateInboxReqResponse> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.args.id}`,
     {
@@ -84,10 +84,9 @@ const updateInbox = async (args: {
   );
   return await resp.json();
 };
-const deleteInbox = async (args: {
-  auth: IAuth;
-  id: string;
-}): Promise<DeleteInboxReqResponse | void> => {
+const deleteInbox = async (
+  args: DeleteInboxArgs,
+): Promise<DeleteInboxReqResponse | void> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
     {
@@ -100,10 +99,7 @@ const deleteInbox = async (args: {
   return await resp.json();
 };
 
-const registerDidwithInbox = async (args: {
-  auth: IAuth;
-  body: RegisterDidWithInboxReqBody;
-}) => {
+const registerDidwithInbox = async (args: RegisterInboxWithDidArgs) => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.body.did}`,
     {
