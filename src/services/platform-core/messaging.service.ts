@@ -1,5 +1,5 @@
 import {
-  CreateInboxReqBody,
+  CreateInboxArgs,
   CreateInboxReqResponse,
   DeleteInboxReqResponse,
   IAuth,
@@ -12,107 +12,106 @@ import {
 import { RegisterDidWithInboxReqBody } from '@/dto/platform-core/messaging/register-did-with-inbox/register-did-with-inbox-req-body';
 
 const createInbox = async (
-  auth: IAuth,
-  args: CreateInboxReqBody,
+  args: CreateInboxArgs,
 ): Promise<CreateInboxReqResponse> => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${auth.authToken}`,
-      },
-      body: JSON.stringify(args),
-    },
-  );
-  return await resp.json();
-};
-
-const listInboxs = async (
-  auth: IAuth,
-  queryArgs: ListInboxesReqQuery,
-): Promise<ListInboxesReqResponse> => {
-  let url: string;
-  switch (queryArgs) {
-    case undefined:
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`;
-
-    default:
-      const query = new URLSearchParams({
-        limit: queryArgs.limit.toString(),
-        cursor: queryArgs.cursor,
-      }).toString();
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes?${query}`;
-  }
-  const resp = await fetch(url, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${auth.authToken}`,
-    },
-  });
-  return await resp.json();
-};
-
-const retrieveInboxName = async (
-  auth: IAuth,
-  id: string,
-): Promise<RetrieveInboxNameReqResponse> => {
-  const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${id}`,
-    {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${auth.authToken}`,
-      },
-    },
-  );
-  return await resp.json();
-};
-const updateInbox = async (
-  auth: IAuth,
-  args: UpdateInbxReqArgs,
-): Promise<UpdateInboxReqResponse> => {
-  const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
-    {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${auth.authToken}`,
+        Authorization: `Bearer ${args.auth.authToken}`,
       },
       body: JSON.stringify(args.body),
     },
   );
   return await resp.json();
 };
-const deleteInbox = async (
-  auth: IAuth,
-  id: string,
-): Promise<DeleteInboxReqResponse | void> => {
+
+const listInboxs = async (args: {
+  auth: IAuth;
+  query?: ListInboxesReqQuery;
+}): Promise<ListInboxesReqResponse> => {
+  let url: string;
+  switch (args.query) {
+    case undefined:
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`;
+
+    default:
+      const query = new URLSearchParams({
+        limit: args.query.limit.toString(),
+        cursor: args.query.cursor,
+      }).toString();
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes?${query}`;
+  }
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${args.auth.authToken}`,
+    },
+  });
+  return await resp.json();
+};
+
+const retrieveInboxName = async (args: {
+  auth: IAuth;
+  id: string;
+}): Promise<RetrieveInboxNameReqResponse> => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${id}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+    },
+  );
+  return await resp.json();
+};
+const updateInbox = async (args: {
+  auth: IAuth;
+  args: UpdateInbxReqArgs;
+}): Promise<UpdateInboxReqResponse> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.args.id}`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.args.body),
+    },
+  );
+  return await resp.json();
+};
+const deleteInbox = async (args: {
+  auth: IAuth;
+  id: string;
+}): Promise<DeleteInboxReqResponse | void> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
     {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${auth.authToken}`,
+        Authorization: `Bearer ${args.auth.authToken}`,
       },
     },
   );
   return await resp.json();
 };
 
-const registerDidwithInbox = async (
-  auth: IAuth,
-  body: RegisterDidWithInboxReqBody,
-) => {
+const registerDidwithInbox = async (args: {
+  auth: IAuth;
+  body: RegisterDidWithInboxReqBody;
+}) => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${body.did}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.body.did}`,
     {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${auth.authToken}`,
+        Authorization: `Bearer ${args.auth.authToken}`,
       },
-      body: JSON.stringify(body),
+      body: JSON.stringify(args.body),
     },
   );
   return await resp.json();
