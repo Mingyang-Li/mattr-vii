@@ -4,3 +4,4 @@ export * from './retrieve-inbox-name';
 export * from './update-inbox';
 export * from './delete-inbox';
 export * from './register-did-with-inbox';
+export * from './list-inbox-dids';

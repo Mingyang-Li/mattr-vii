@@ -3,6 +3,8 @@ import {
   CreateInboxReqResponse,
   DeleteInboxArgs,
   DeleteInboxReqResponse,
+  ListInboxDidsArgs,
+  ListInboxDidsReqResponse,
   ListInboxesArgs,
   ListInboxesReqResponse,
   RegisterDidWithInboxReqResponse,
@@ -113,8 +115,27 @@ const registerDidwithInbox = async (
   );
   return await resp.json();
 };
-const listInboxDids = async () => {
-  return;
+const listInboxDids = async (
+  args: ListInboxDidsArgs,
+): Promise<ListInboxDidsReqResponse> => {
+  let url: string;
+  switch (args.query) {
+    case undefined:
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.inboxId}/dids`;
+    default:
+      const query = new URLSearchParams({
+        limit: args.query.limit.toString(),
+        cursor: args.query.cursor,
+      }).toString();
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.inboxId}/dids?${query}`;
+  }
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${args.auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
 const unregisterInboxDid = async () => {
