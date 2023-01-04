@@ -1,4 +1,5 @@
-import { UpdateInboxReqArgs, IAuth } from '@/dto';
+import { UpdateInboxReqArgs } from '@/dto/platform-core/messaging';
+import { IAuth } from '@/dto/setup';
 
 export interface UpdateInboxArgs {
   auth: IAuth;

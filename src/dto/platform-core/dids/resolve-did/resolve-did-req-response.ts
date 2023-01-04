@@ -1,4 +1,8 @@
-import { ResolveDidIon, ResolveDidKey, ResolveDidWeb } from '@/dto';
+import {
+  ResolveDidIon,
+  ResolveDidKey,
+  ResolveDidWeb,
+} from '@/dto/platform-core/dids';
 
 export type ResolveDidReqResponse =
   | ResolveDidKey

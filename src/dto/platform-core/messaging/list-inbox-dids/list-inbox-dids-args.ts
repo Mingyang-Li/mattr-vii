@@ -1,4 +1,4 @@
-import { IAuth } from '@/dto';
+import { IAuth } from '@/dto/setup';
 
 export interface ListInboxDidsArgs {
   auth: IAuth;
