@@ -8,6 +8,8 @@ const client = new MattrViiClient({
   authToken: config.get('MATTR_AUTH_TOKEN'),
 });
 
+const auth = client.auth;
+
 export const createDid_key = async () => {
   const body: CreateDidReqBody = {
     method: 'key',
@@ -15,10 +17,10 @@ export const createDid_key = async () => {
       keyType: 'ed25519',
     },
   };
-  const did = await client.PlatformCoreService.DIDs.createDid(
-    client.auth,
+  const did = await client.PlatformCoreService.DIDs.createDid({
+    auth,
     body,
-  );
+  });
   console.log(JSON.stringify(did));
 };
 
@@ -29,26 +31,26 @@ export const createDid_ion = async () => {
       keyType: 'bls12381g2',
     },
   };
-  const did = await client.PlatformCoreService.DIDs.createDid(
-    client.auth,
+  const did = await client.PlatformCoreService.DIDs.createDid({
+    auth,
     body,
-  );
+  });
   console.log(JSON.stringify(did));
 };
 
 export const resolveDid = async () => {
-  const did = await client.PlatformCoreService.DIDs.resolveDid(
-    client.auth,
-    'did:key:z6MkmWBp7BHangrddxzTtEk7ypqJgnDC892iabgijN2GCnGR',
-  );
+  const did = await client.PlatformCoreService.DIDs.resolveDid({
+    auth,
+    id: 'did:key:z6MkmWBp7BHangrddxzTtEk7ypqJgnDC892iabgijN2GCnGR',
+  });
   console.log(JSON.stringify(did));
 };
 
 export const retrieveDids = async () => {
-  const dids = await client.PlatformCoreService.DIDs.retrieveDids(client.auth);
+  const dids = await client.PlatformCoreService.DIDs.retrieveDids({ auth });
   console.log(JSON.stringify(dids));
 };
 
 export const main = async () => {
-  await createDid_ion();
+  // await createDid_ion();
 };

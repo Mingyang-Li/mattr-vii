@@ -3,7 +3,6 @@ import {
   CreateInboxReqResponse,
   DeleteInboxArgs,
   DeleteInboxReqResponse,
-  IAuth,
   ListInboxesArgs,
   ListInboxesReqResponse,
   RegisterInboxWithDidArgs,
@@ -12,7 +11,6 @@ import {
   UpdateInboxArgs,
   UpdateInboxReqResponse,
 } from '@/dto';
-import { RegisterDidWithInboxReqBody } from '@/dto/platform-core/messaging/register-did-with-inbox/register-did-with-inbox-req-body';
 
 const createInbox = async (
   args: CreateInboxArgs,

@@ -1,51 +1,51 @@
 import {
-  CreateDidReqBody,
+  CreateDidArgs,
   CreateDidReqResponse,
+  DeleteDidArgs,
   IAuth,
+  ResolveDidArgs,
   ResolveDidReqResponse,
-  RetrieveDidsReqQuery,
+  RetrieveDidsArgs,
   RetrieveDidsReqResponse,
   WellKnownDidConfigResponse,
 } from '@/dto';
 import fetch from 'node-fetch';
 
 const createDid = async (
-  auth: IAuth,
-  args: CreateDidReqBody,
+  args: CreateDidArgs,
 ): Promise<CreateDidReqResponse> => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids`,
     {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${auth.authToken}`,
+        Authorization: `Bearer ${args.auth.authToken}`,
       },
-      body: JSON.stringify(args),
+      body: JSON.stringify(args.body),
     },
   );
   return await resp.json();
 };
 
 const retrieveDids = async (
-  auth: IAuth,
-  queryArgs?: RetrieveDidsReqQuery,
+  args: RetrieveDidsArgs,
 ): Promise<RetrieveDidsReqResponse> => {
   let url: string;
-  switch (queryArgs) {
+  switch (args.query) {
     case undefined:
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
     default:
       const query = new URLSearchParams({
-        limit: queryArgs ? queryArgs.limit.toString() : '2',
-        cursor: queryArgs ? queryArgs.cursor : '',
+        limit: args.query ? args.query.limit.toString() : '2',
+        cursor: args.query ? args.query.cursor : '',
       }).toString();
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
   }
   const resp = await fetch(url, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${auth.authToken}`,
+      Authorization: `Bearer ${args.auth.authToken}`,
     },
   });
 
@@ -53,28 +53,27 @@ const retrieveDids = async (
 };
 
 const resolveDid = async (
-  auth: IAuth,
-  id: string,
+  args: ResolveDidArgs,
 ): Promise<ResolveDidReqResponse> => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${id}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
     {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${auth.authToken}`,
+        Authorization: `Bearer ${args.auth.authToken}`,
       },
     },
   );
   return await resp.json();
 };
 
-const deleteDid = async (auth: IAuth, id: string) => {
+const deleteDid = async (args: DeleteDidArgs) => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${id}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
     {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${auth.authToken}`,
+        Authorization: `Bearer ${args.auth.authToken}`,
       },
     },
   );
