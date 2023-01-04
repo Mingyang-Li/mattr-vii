@@ -3,6 +3,7 @@ import {
   CreateInboxReqResponse,
   DeleteInboxReqResponse,
   IAuth,
+  ListInboxesArgs,
   ListInboxesReqQuery,
   ListInboxesReqResponse,
   RetrieveInboxNameReqResponse,
@@ -28,10 +29,9 @@ const createInbox = async (
   return await resp.json();
 };
 
-const listInboxs = async (args: {
-  auth: IAuth;
-  query?: ListInboxesReqQuery;
-}): Promise<ListInboxesReqResponse> => {
+const listInboxs = async (
+  args: ListInboxesArgs,
+): Promise<ListInboxesReqResponse> => {
   let url: string;
   switch (args.query) {
     case undefined:
