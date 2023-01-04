@@ -13,12 +13,12 @@ yarn add mattr-vii-client
 npm install mattr-vii-vlient
 ```
 
-Import the SDK
+🛒 Import the SDK
 ```ts
 import { MattrViiClient } from 'mattr-vii-client'
 ```
 
-Initialise the client
+🔥 Initialise the client
 ```ts
 const client = new MattrViiClient({
   tenantUrl: process.env.MATTR_TENANT_URL,
@@ -26,31 +26,13 @@ const client = new MattrViiClient({
 })
 ```
 
-Use the SDK like so:
+## ‍🏫 Start using the SDK following these guidelines:
+### Platform Core:
+- [DIDs](https://github.com/Mingyang-Li/mattr-vii/blob/main/doc/platform-core/DIDs.md)
+- [Messaging](https://github.com/Mingyang-Li/mattr-vii/blob/main/doc/platform-core/Messaging.md)
+- [Webhooks](https://github.com/Mingyang-Li/mattr-vii/blob/main/doc/platform-core/Webhooks.md)
 
-Create a DID (key)
-```ts
-const body: CreateDidReqBody = {
-  method: 'key',
-  options: {
-    keyType: 'ed25519',
-  },
-};
-const did = await client.PlatformCoreService.DIDs.createDid(
-  client.auth,
-  body,
-);
-```
-
-Resolve a DID
-```ts
-const did = await client.PlatformCoreService.DIDs.resolveDid(
-  client.auth,
-  'did:key:placeholder',
-);
-```
-
-😺 Using the SDK in NestJS
+## 🐈 Misc: Using the SDK in NestJS
 ```ts
 // mattr.service.ts
 @Injectable()
@@ -71,13 +53,13 @@ export class UserController {
 
   @Post('create')
   public async createUser(@Body() args: CreateUserBody) {
-    const body: CreateDidReqBody = {
+    const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
       method: 'key',
       options: {
         keyType: 'ed25519',
       },
     };
-    const did = await this.mattrService.PlatformCoreService.DIDs.createDid(
+    const did = await this.mattrService.PlatformCore.DIDs.createDid(
       client.auth,
       body,
     );
