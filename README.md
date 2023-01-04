@@ -50,7 +50,7 @@ const did = await client.PlatformCoreService.DIDs.resolveDid(
 );
 ```
 
-😺 Using the SDK NestJS
+😺 Using the SDK in NestJS
 ```ts
 // mattr.service.ts
 @Injectable()
@@ -70,7 +70,7 @@ export class UserController {
   ) {};
 
   @Post('create')
-  public async createUser(@Body body: CreateUserBody) {
+  public async createUser(@Body() args: CreateUserBody) {
     const body: CreateDidReqBody = {
       method: 'key',
       options: {
@@ -82,7 +82,7 @@ export class UserController {
       body,
     );
     return await this.prismaService.user.create({
-      ...,
+      ...args,
       did: did.did,
     })
   }
