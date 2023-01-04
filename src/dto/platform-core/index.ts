@@ -1,2 +1,2 @@
-export * from './dids';
-export * from './messaging';
+export * as DIDs from './dids';
+export * as Messaging from './messaging';

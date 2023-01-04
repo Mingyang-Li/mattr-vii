@@ -1,14 +1,14 @@
 import {
   CreateDidArgs,
   CreateDidReqResponse,
-  DeleteDidArgs,
-  IAuth,
-  ResolveDidArgs,
-  ResolveDidReqResponse,
   RetrieveDidsArgs,
   RetrieveDidsReqResponse,
+  ResolveDidArgs,
+  ResolveDidReqResponse,
+  DeleteDidArgs,
   WellKnownDidConfigResponse,
-} from '@/dto';
+} from '@/dto/platform-core/dids';
+import { IAuth } from '@/dto/setup';
 import fetch from 'node-fetch';
 
 const createDid = async (

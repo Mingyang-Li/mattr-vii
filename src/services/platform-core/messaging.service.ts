@@ -1,19 +1,19 @@
 import {
   CreateInboxArgs,
   CreateInboxReqResponse,
-  DeleteInboxArgs,
-  DeleteInboxReqResponse,
-  ListInboxDidsArgs,
-  ListInboxDidsReqResponse,
   ListInboxesArgs,
   ListInboxesReqResponse,
-  RegisterDidWithInboxReqResponse,
-  RegisterInboxWithDidArgs,
   RetrieveInboxNameArgs,
   RetrieveInboxNameReqResponse,
   UpdateInboxArgs,
   UpdateInboxReqResponse,
-} from '@/dto';
+  DeleteInboxArgs,
+  DeleteInboxReqResponse,
+  RegisterInboxWithDidArgs,
+  RegisterDidWithInboxReqResponse,
+  ListInboxDidsArgs,
+  ListInboxDidsReqResponse,
+} from '@/dto/platform-core/messaging';
 
 const createInbox = async (
   args: CreateInboxArgs,

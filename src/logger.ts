@@ -1,6 +1,6 @@
 import { MattrViiClient } from '@/client';
-import { CreateDidReqBody } from '@/dto';
 import { ConfigService } from '@nestjs/config';
+import * as ApiTypes from '@/dto';
 
 const config = new ConfigService();
 const client = new MattrViiClient({
@@ -11,7 +11,7 @@ const client = new MattrViiClient({
 const auth = client.auth;
 
 export const createDid_key = async () => {
-  const body: CreateDidReqBody = {
+  const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     method: 'key',
     options: {
       keyType: 'ed25519',
@@ -22,10 +22,21 @@ export const createDid_key = async () => {
 };
 
 export const createDid_ion = async () => {
-  const body: CreateDidReqBody = {
+  const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     method: 'ion',
     options: {
       keyType: 'bls12381g2',
+    },
+  };
+  const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+  console.log(JSON.stringify(did));
+};
+
+export const createDid_web = async () => {
+  const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
+    method: 'web',
+    options: {
+      url: 'example.com',
     },
   };
   const did = await client.PlatformCore.DIDs.createDid({ auth, body });
