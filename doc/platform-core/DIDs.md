@@ -1,14 +1,7 @@
 # 🧍 Platform Core - DIDs
 
-## Assume you already setup the SDK like so:
-```ts
-import { MattrViiClient, ApiTypes } from 'mattr-vii-client';
+## Assume you already setup the SDK following the [main README doc](https://github.com/Mingyang-Li/mattr-vii#readme)
 
-const client = new MattrViiClient({
-  tenantUrl: process.env.MATTR_TENANT_URL,
-  authToken: process.env.MATTR_AUTH_TOKEN,
-});
-```
 Examples:
 ```ts
 // Create a DID (key method):
@@ -18,7 +11,7 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     keyType: 'ed25519',
   },
 };
-const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+const did = await client.PlatformCore.DIDs.createDid({ client.auth, body });
 ```
 
 ```ts
@@ -29,7 +22,7 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     keyType: 'bls12381g2',
   },
 };
-const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+const did = await client.PlatformCore.DIDs.createDid({ client.auth, body });
 ```
 
 ```ts
@@ -40,17 +33,17 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     url: 'example.com',
   },
 };
-const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+const did = await client.PlatformCore.DIDs.createDid({ client.auth, body });
 ```
 
 ```ts
 // Resolve a DID
 const id = 'did:key:placeholder';
-const did = await client.PlatformCore.DIDs.resolveDid({ auth, id });
+const did = await client.PlatformCore.DIDs.resolveDid({ client.auth, id });
 ```
 
 ```ts
 // Retrieve DIDs
 const id = 'did:key:placeholder';
-const dids = await client.PlatformCore.DIDs.retrieveDids({ auth });
+const dids = await client.PlatformCore.DIDs.retrieveDids({ client.auth });
 ```

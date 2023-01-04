@@ -1,13 +1,5 @@
 # 🧍 Platform Core - Messaging
-## Assume you already setup the SDK like so:
-```ts
-import { MattrViiClient, ApiTypes } from 'mattr-vii-client';
-
-const client = new MattrViiClient({
-  tenantUrl: process.env.MATTR_TENANT_URL,
-  authToken: process.env.MATTR_AUTH_TOKEN,
-});
-```
+## Assume you already setup the SDK following the [main README doc](https://github.com/Mingyang-Li/mattr-vii#readme)
 Examples:
 ```ts
 // Create an inbox

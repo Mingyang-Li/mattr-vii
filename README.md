@@ -15,7 +15,7 @@ npm install mattr-vii-vlient
 
 🛒 Import the SDK
 ```ts
-import { MattrViiClient } from 'mattr-vii-client'
+import { MattrViiClient, ApiTypes } from 'mattr-vii-client'
 ```
 
 🔥 Initialise the client
