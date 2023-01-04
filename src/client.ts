@@ -1,12 +1,12 @@
-import { IAuth } from '@/dto';
+import { IAuth, IMattrViiClient } from '@/dto';
 import * as DidServices from '@/services/platform-core/did.service';
 import * as MessagingServices from '@/services/platform-core/messaging.service';
 import * as WebhookServices from '@/services/platform-core/webhook.service';
 
-export class MattrViiClient {
+export class MattrViiClient implements IMattrViiClient {
   constructor(public readonly auth: IAuth) {}
 
-  public get PlatformCoreService() {
+  public get PlatformCore() {
     return {
       DIDs: DidServices,
       Messaging: MessagingServices,
@@ -14,7 +14,7 @@ export class MattrViiClient {
     };
   }
 
-  public get WebSemanticCredentialsService() {
+  public get WebSemanticCredentials() {
     return {
       Credentials: {},
       Revocation: {},
@@ -23,7 +23,7 @@ export class MattrViiClient {
     };
   }
 
-  public get CompactCredentialsService() {
+  public get CompactCredentials() {
     return {
       Core: {},
       PdfTemplateManagement: {},

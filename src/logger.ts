@@ -17,7 +17,7 @@ export const createDid_key = async () => {
       keyType: 'ed25519',
     },
   };
-  const did = await client.PlatformCoreService.DIDs.createDid({ auth, body });
+  const did = await client.PlatformCore.DIDs.createDid({ auth, body });
   console.log(did);
 };
 
@@ -28,12 +28,12 @@ export const createDid_ion = async () => {
       keyType: 'bls12381g2',
     },
   };
-  const did = await client.PlatformCoreService.DIDs.createDid({ auth, body });
+  const did = await client.PlatformCore.DIDs.createDid({ auth, body });
   console.log(JSON.stringify(did));
 };
 
 export const resolveDid = async () => {
-  const did = await client.PlatformCoreService.DIDs.resolveDid({
+  const did = await client.PlatformCore.DIDs.resolveDid({
     auth,
     id: 'did:key:z6MkmWBp7BHangrddxzTtEk7ypqJgnDC892iabgijN2GCnGR',
   });
@@ -41,7 +41,7 @@ export const resolveDid = async () => {
 };
 
 export const retrieveDids = async () => {
-  const dids = await client.PlatformCoreService.DIDs.retrieveDids({ auth });
+  const dids = await client.PlatformCore.DIDs.retrieveDids({ auth });
   console.log(JSON.stringify(dids));
 };
 
