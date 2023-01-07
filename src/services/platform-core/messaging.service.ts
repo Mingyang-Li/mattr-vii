@@ -14,6 +14,8 @@ import {
   ListInboxDidsArgs,
   ListInboxDidsReqResponse,
   UnregisterDidWithinInboxArgs,
+  ListInboxMessagesArgs,
+  ListInboxMessagesReqResponse,
 } from '@/dto/platform-core/messaging';
 
 const createInbox = async (
@@ -155,8 +157,27 @@ const unregisterDidWithinInbox = async (args: UnregisterDidWithinInboxArgs) => {
   return await resp.json();
 };
 
-const listInboxMessages = async () => {
-  return;
+const listInboxMessages = async (
+  args: ListInboxMessagesArgs,
+): Promise<ListInboxMessagesReqResponse> => {
+  let url: string;
+  switch (args.query) {
+    case undefined:
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.inboxId}/messages`;
+    default:
+      const query = new URLSearchParams({
+        limit: args.query.limit.toString(),
+        cursor: args.query.cursor,
+      }).toString();
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.inboxId}/messages?${query}`;
+  }
+  const resp = await fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${args.auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
 const retrieveMessage = async () => {
