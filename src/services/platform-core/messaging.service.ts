@@ -16,6 +16,8 @@ import {
   UnregisterDidWithinInboxArgs,
   ListInboxMessagesArgs,
   ListInboxMessagesReqResponse,
+  RetrieveMessageArgs,
+  Message,
 } from '@/dto/platform-core/messaging';
 
 const createInbox = async (
@@ -180,8 +182,17 @@ const listInboxMessages = async (
   return await resp.json();
 };
 
-const retrieveMessage = async () => {
-  return;
+const retrieveMessage = async (args: RetrieveMessageArgs): Promise<Message> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}/messages/${args.query.messageId}`,
+    {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+    },
+  );
+  return await resp.json();
 };
 
 const deleteMessage = async () => {

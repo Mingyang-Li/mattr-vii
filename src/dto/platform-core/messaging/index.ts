@@ -7,3 +7,5 @@ export * from './register-did-with-inbox';
 export * from './list-inbox-dids';
 export * from './unregister-did-within-inbox';
 export * from './list-inbox-messages';
+export * from './retrieve-message';
+export * from './core';

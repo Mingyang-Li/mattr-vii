@@ -1,9 +1,6 @@
+import { Message } from '@/dto/platform-core/messaging';
+
 export interface ListInboxMessagesReqResponse {
-  data: {
-    id: string;
-    inboxId: string;
-    payload: string;
-    createdAt: string;
-  }[];
+  data: Message[];
   nextCursor?: string;
 }
