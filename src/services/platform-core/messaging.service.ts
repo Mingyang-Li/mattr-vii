@@ -32,6 +32,10 @@ import {
   UpdateInboxArgs,
   UpdateInboxReqResponse,
 } from '@/dto/platform-core/messaging/update-inbox';
+import {
+  VerifyMessageArgs,
+  VerifyMessageReqResponse,
+} from '@/dto/platform-core/messaging/verify-message';
 
 const createInbox = async (
   args: CreateInboxArgs,
@@ -238,8 +242,22 @@ const signMessage = async (args: SignMessageArgs): Promise<string> => {
   return await resp.json();
 };
 
-const verifyMessage = async () => {
-  return;
+const verifyMessage = async (
+  args: VerifyMessageArgs,
+): Promise<VerifyMessageReqResponse> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/verify`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    },
+  );
+
+  return await resp.json();
 };
 
 const encryptMessage = async () => {
