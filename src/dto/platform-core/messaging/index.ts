@@ -12,3 +12,5 @@ export * as Core from './core';
 export * as DeleteMessage from './delete-message';
 export * as SignMessage from './sign-message';
 export * as VerifyMessage from './verify-message';
+export * as DecryptMessage from './decrypt-message';
+export * as EncryptMessage from './encrypt-message';

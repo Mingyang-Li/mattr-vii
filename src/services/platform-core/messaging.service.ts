@@ -3,8 +3,13 @@ import {
   CreateInboxArgs,
   CreateInboxReqResponse,
 } from '@/dto/platform-core/messaging/create-inbox';
+import {
+  DecryptMessageArgs,
+  DecryptMessageReqResponse,
+} from '@/dto/platform-core/messaging/decrypt-message';
 import { DeleteInboxArgs } from '@/dto/platform-core/messaging/delete-inbox';
 import { DeleteMessageArgs } from '@/dto/platform-core/messaging/delete-message';
+import { EncryptMessageArgs } from '@/dto/platform-core/messaging/encrypt-message';
 import {
   ListInboxDidsArgs,
   ListInboxDidsReqResponse,
@@ -222,7 +227,6 @@ const deleteMessage = async (args: DeleteMessageArgs): Promise<void> => {
       },
     },
   );
-
   return await resp.json();
 };
 
@@ -238,7 +242,6 @@ const signMessage = async (args: SignMessageArgs): Promise<string> => {
       body: JSON.stringify(args.body),
     },
   );
-
   return await resp.json();
 };
 
@@ -256,16 +259,39 @@ const verifyMessage = async (
       body: JSON.stringify(args.body),
     },
   );
-
   return await resp.json();
 };
 
-const encryptMessage = async () => {
-  return;
+const encryptMessage = async (args: EncryptMessageArgs): Promise<any> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/encrypt`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    },
+  );
+  return await resp.json();
 };
 
-const decryptMessage = async () => {
-  return;
+const decryptMessage = async (
+  args: DecryptMessageArgs,
+): Promise<DecryptMessageReqResponse> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/decrypt`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    },
+  );
+  return await resp.json();
 };
 
 const sendMessage = async () => {
