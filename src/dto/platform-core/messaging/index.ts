@@ -9,3 +9,4 @@ export * from './unregister-did-within-inbox';
 export * from './list-inbox-messages';
 export * from './retrieve-message';
 export * from './core';
+export * from './delete-message';

@@ -8,7 +8,6 @@ import {
   UpdateInboxArgs,
   UpdateInboxReqResponse,
   DeleteInboxArgs,
-  DeleteInboxReqResponse,
   RegisterInboxWithDidArgs,
   RegisterDidWithInboxReqResponse,
   ListInboxDidsArgs,
@@ -18,6 +17,7 @@ import {
   ListInboxMessagesReqResponse,
   RetrieveMessageArgs,
   Message,
+  DeleteMessageArgs,
 } from '@/dto/platform-core/messaging';
 
 const createInbox = async (
@@ -90,9 +90,7 @@ const updateInbox = async (
   );
   return await resp.json();
 };
-const deleteInbox = async (
-  args: DeleteInboxArgs,
-): Promise<DeleteInboxReqResponse | void> => {
+const deleteInbox = async (args: DeleteInboxArgs): Promise<void> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
     {
@@ -144,7 +142,9 @@ const listInboxDids = async (
 };
 
 // maybe typo on doc - should be 'within an inbox'
-const unregisterDidWithinInbox = async (args: UnregisterDidWithinInboxArgs) => {
+const unregisterDidWithinInbox = async (
+  args: UnregisterDidWithinInboxArgs,
+): Promise<void> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}/dids`,
     {
@@ -195,8 +195,18 @@ const retrieveMessage = async (args: RetrieveMessageArgs): Promise<Message> => {
   return await resp.json();
 };
 
-const deleteMessage = async () => {
-  return;
+const deleteMessage = async (args: DeleteMessageArgs): Promise<void> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}/messages/${args.query.messageId}`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+    },
+  );
+
+  return await resp.json();
 };
 
 const signMessage = async () => {
