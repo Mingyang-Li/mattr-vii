@@ -31,6 +31,7 @@ import {
   RetrieveInboxNameReqResponse,
 } from '@/dto/platform-core/messaging/retrieve-inbox-name';
 import { RetrieveMessageArgs } from '@/dto/platform-core/messaging/retrieve-message';
+import { SendMessageArgs } from '@/dto/platform-core/messaging/send-message';
 import { SignMessageArgs } from '@/dto/platform-core/messaging/sign-message';
 import { UnregisterDidWithinInboxArgs } from '@/dto/platform-core/messaging/unregister-did-within-inbox';
 import {
@@ -294,8 +295,19 @@ const decryptMessage = async (
   return await resp.json();
 };
 
-const sendMessage = async () => {
-  return;
+const sendMessage = async (args: SendMessageArgs): Promise<void> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/send`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    },
+  );
+  return await resp.json();
 };
 
 export {

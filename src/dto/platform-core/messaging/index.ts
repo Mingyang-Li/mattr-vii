@@ -14,3 +14,4 @@ export * as SignMessage from './sign-message';
 export * as VerifyMessage from './verify-message';
 export * as DecryptMessage from './decrypt-message';
 export * as EncryptMessage from './encrypt-message';
+export * as SendMessage from './send-message';
