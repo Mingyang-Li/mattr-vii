@@ -13,6 +13,7 @@ import {
   RegisterDidWithInboxReqResponse,
   ListInboxDidsArgs,
   ListInboxDidsReqResponse,
+  UnregisterDidWithinInboxArgs,
 } from '@/dto/platform-core/messaging';
 
 const createInbox = async (
@@ -138,8 +139,20 @@ const listInboxDids = async (
   return await resp.json();
 };
 
-const unregisterInboxDid = async () => {
-  return;
+// maybe typo on doc - should be 'within an inbox'
+const unregisterDidWithinInbox = async (args: UnregisterDidWithinInboxArgs) => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}/dids`,
+    {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    },
+  );
+  return await resp.json();
 };
 
 const listInboxMessages = async () => {
@@ -182,7 +195,7 @@ export {
   deleteInbox,
   registerDidwithInbox,
   listInboxDids,
-  unregisterInboxDid,
+  unregisterDidWithinInbox,
   listInboxMessages,
   retrieveMessage,
   deleteMessage,
