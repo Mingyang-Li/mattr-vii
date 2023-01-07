@@ -1,24 +1,37 @@
+import { Message } from '@/dto/platform-core/messaging/core';
 import {
   CreateInboxArgs,
   CreateInboxReqResponse,
-  ListInboxesArgs,
-  ListInboxesReqResponse,
-  RetrieveInboxNameArgs,
-  RetrieveInboxNameReqResponse,
-  UpdateInboxArgs,
-  UpdateInboxReqResponse,
-  DeleteInboxArgs,
-  RegisterInboxWithDidArgs,
-  RegisterDidWithInboxReqResponse,
+} from '@/dto/platform-core/messaging/create-inbox';
+import { DeleteInboxArgs } from '@/dto/platform-core/messaging/delete-inbox';
+import { DeleteMessageArgs } from '@/dto/platform-core/messaging/delete-message';
+import {
   ListInboxDidsArgs,
   ListInboxDidsReqResponse,
-  UnregisterDidWithinInboxArgs,
+} from '@/dto/platform-core/messaging/list-inbox-dids';
+import {
   ListInboxMessagesArgs,
   ListInboxMessagesReqResponse,
-  RetrieveMessageArgs,
-  Message,
-  DeleteMessageArgs,
-} from '@/dto/platform-core/messaging';
+} from '@/dto/platform-core/messaging/list-inbox-messages';
+import {
+  ListInboxesArgs,
+  ListInboxesReqResponse,
+} from '@/dto/platform-core/messaging/list-inboxes';
+import {
+  RegisterInboxWithDidArgs,
+  RegisterDidWithInboxReqResponse,
+} from '@/dto/platform-core/messaging/register-did-with-inbox';
+import {
+  RetrieveInboxNameArgs,
+  RetrieveInboxNameReqResponse,
+} from '@/dto/platform-core/messaging/retrieve-inbox-name';
+import { RetrieveMessageArgs } from '@/dto/platform-core/messaging/retrieve-message';
+import { SignMessageArgs } from '@/dto/platform-core/messaging/sign-message';
+import { UnregisterDidWithinInboxArgs } from '@/dto/platform-core/messaging/unregister-did-within-inbox';
+import {
+  UpdateInboxArgs,
+  UpdateInboxReqResponse,
+} from '@/dto/platform-core/messaging/update-inbox';
 
 const createInbox = async (
   args: CreateInboxArgs,
@@ -209,8 +222,20 @@ const deleteMessage = async (args: DeleteMessageArgs): Promise<void> => {
   return await resp.json();
 };
 
-const signMessage = async () => {
-  return;
+const signMessage = async (args: SignMessageArgs): Promise<string> => {
+  const resp = await fetch(
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/sign`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${args.auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    },
+  );
+
+  return await resp.json();
 };
 
 const verifyMessage = async () => {
