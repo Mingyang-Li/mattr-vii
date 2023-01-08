@@ -44,3 +44,47 @@ const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
   id: 'your_inbox_id',
 });
 ```
+
+```ts
+// Register DID with in inbox
+```
+
+```ts
+// List DIDs in an inbox
+```
+
+```ts
+// Unregister DID within an inbox
+```
+
+```ts
+// List inbox messages
+```
+
+```ts
+// Retrieve a message
+```
+
+```ts
+// Delete a message
+```
+
+```ts
+// Sign a message
+```
+
+```ts
+// Verify a message
+```
+
+```ts
+// Encrypt a message
+```
+
+```ts
+// Decrypt a message
+```
+
+```ts
+// Send a message
+```
