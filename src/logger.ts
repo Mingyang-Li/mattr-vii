@@ -117,6 +117,11 @@ export const createWebhook = async () => {
   console.log(webhook);
 };
 
+export const getWebhooks = async () => {
+  const webhooks = await client.PlatformCore.Webhooks.getWebhooks({ auth });
+  console.log(webhooks);
+};
+
 export const main = async () => {
-  // await createWebhook();
+  // await getWebhooks();
 };

@@ -1,4 +1,4 @@
-export interface CreateWebhookReqResponse {
+export interface Webhook {
   id: string;
   events: string[];
   url: string;

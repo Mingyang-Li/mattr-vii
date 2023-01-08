@@ -15,7 +15,8 @@ const webhook = await client.PlatformCore.Webhooks.createWebhook({
 ```
 
 ```ts
-// get a list of webhooks
+// Get a list of webhooks
+const webhooks = await client.PlatformCore.Webhooks.getWebhooks({ auth });
 ```
 
 ```ts
