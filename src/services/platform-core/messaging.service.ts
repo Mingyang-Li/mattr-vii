@@ -106,13 +106,14 @@ const updateInbox = async (
   args: UpdateInboxArgs,
 ): Promise<UpdateInboxReqResponse> => {
   const resp = await fetch(
-    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.args.id}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}`,
     {
       method: 'PUT',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Bearer ${args.auth.authToken}`,
       },
-      body: JSON.stringify(args.args.body),
+      body: JSON.stringify(args.body),
     },
   );
   return await resp.json();

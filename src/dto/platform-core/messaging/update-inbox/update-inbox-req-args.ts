@@ -1,6 +1,3 @@
-export interface UpdateInboxReqArgs {
-  id: string;
-  body: {
-    name: string;
-  };
+export interface UpdateInboxReqBody {
+  name: string;
 }

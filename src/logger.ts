@@ -87,6 +87,16 @@ export const retrieveInboxName = async () => {
   console.log(inboxName);
 };
 
+export const updateInbox = async () => {
+  const inboxId = '4c8b950f-fc52-49d6-9644-fc82edeae5f2';
+  const updatedInbox = await client.PlatformCore.Messaging.updateInbox({
+    auth,
+    query: { inboxId },
+    body: { name: 'Inbox-1' },
+  });
+  console.log(updatedInbox);
+};
+
 export const main = async () => {
-  await retrieveInboxName();
+  await updateInbox();
 };
