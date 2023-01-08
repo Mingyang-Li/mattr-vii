@@ -92,7 +92,7 @@ const retrieveInboxName = async (
   args: RetrieveInboxNameArgs,
 ): Promise<RetrieveInboxNameReqResponse> => {
   const resp = await fetch(
-    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}`,
     {
       method: 'GET',
       headers: {

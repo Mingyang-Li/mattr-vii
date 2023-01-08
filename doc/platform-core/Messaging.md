@@ -17,3 +17,12 @@ const inbox = await client.PlatformCore.Messaging.createInbox({ auth, body });
 // List inboxes
 const inboxes = await client.PlatformCore.Messaging.listInboxs({ auth });
 ```
+
+```ts
+// Retrieve inbox name
+const inboxId = '4c8b950f-fc52-49d6-9644-fc82edeae5f2';
+const inboxName = await client.PlatformCore.Messaging.retrieveInboxName({
+  auth,
+  query: { inboxId },
+});
+```
