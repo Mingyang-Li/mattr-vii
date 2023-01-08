@@ -23,7 +23,10 @@ import { MattrViiClient, ApiTypes } from 'mattr-vii-client'
 const client = new MattrViiClient({
   tenantUrl: process.env.MATTR_TENANT_URL,
   authToken: process.env.MATTR_AUTH_TOKEN,
-})
+});
+
+// optional
+const auth = client.auth;
 ```
 
 ## ‍🏫 Start using the SDK following these guidelines:

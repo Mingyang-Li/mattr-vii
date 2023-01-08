@@ -56,17 +56,21 @@ export const retrieveDids = async () => {
   console.log(JSON.stringify(dids));
 };
 
-export const createInbox = () => {
+export const createInbox = async () => {
+  const date = new Date();
   const body: ApiTypes.PlatformCore.Messaging.CreateInbox.CreateInboxReqBody = {
     id: 'placeholder',
     inboxId: 'placeholder',
     payload: 'placeholder',
-    createdAt: new Date(),
+    createdAt: date.toString(),
   };
-  const inbox = client.PlatformCore.Messaging.createInbox({ auth, body });
+  const inbox = await client.PlatformCore.Messaging.createInbox({
+    auth: client.auth,
+    body,
+  });
   console.log(inbox);
 };
 
 export const main = async () => {
-  // await createDid_ion();
+  await createInbox();
 };

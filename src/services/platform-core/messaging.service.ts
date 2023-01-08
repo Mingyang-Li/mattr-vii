@@ -42,6 +42,7 @@ import {
   VerifyMessageArgs,
   VerifyMessageReqResponse,
 } from '@/dto/platform-core/messaging/verify-message';
+import fetch from 'node-fetch';
 
 const createInbox = async (
   args: CreateInboxArgs,

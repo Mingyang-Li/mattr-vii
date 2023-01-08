@@ -3,11 +3,15 @@
 Examples:
 ```ts
 // Create an inbox
-const body: ApiTypes.PlatformCore.Messaging.CreateInboxReqBody = {
+const date = new Date();
+const body: ApiTypes.PlatformCore.Messaging.CreateInbox.CreateInboxReqBody = {
   id: 'placeholder',
   inboxId: 'placeholder',
   payload: 'placeholder',
-  createdAt: new Date(),
+  createdAt: date.toString(),
 };
-const inbox = await client.PlatformCore.Messaging.createInbox({ auth, body });
+const inbox = await client.PlatformCore.Messaging.createInbox({
+  auth: client.auth,
+  body,
+});
 ```
