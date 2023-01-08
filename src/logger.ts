@@ -98,5 +98,5 @@ export const updateInbox = async () => {
 };
 
 export const main = async () => {
-  await updateInbox();
+  // await updateInbox();
 };

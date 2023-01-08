@@ -26,3 +26,13 @@ const inboxName = await client.PlatformCore.Messaging.retrieveInboxName({
   query: { inboxId },
 });
 ```
+
+```ts
+// Update inbox
+const inboxId = '4c8b950f-fc52-49d6-9644-fc82edeae5f2';
+const updatedInbox = await client.PlatformCore.Messaging.updateInbox({
+  auth,
+  query: { inboxId },
+  body: { name: 'Inbox-1' },
+});
+```
