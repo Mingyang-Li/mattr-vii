@@ -97,6 +97,14 @@ export const updateInbox = async () => {
   console.log(updatedInbox);
 };
 
+export const deleteInbox = async () => {
+  const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
+    auth,
+    id: 'your_inbox_id',
+  });
+  console.log(deletedInbox);
+};
+
 export const main = async () => {
   // await updateInbox();
 };
