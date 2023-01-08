@@ -105,6 +105,18 @@ export const deleteInbox = async () => {
   console.log(deletedInbox);
 };
 
+export const createWebhook = async () => {
+  const body: ApiTypes.PlatformCore.Webhooks.CreateWebhook.CreateWebhookBody = {
+    events: ['OidcIssuerCredentialIssued'],
+    url: 'https://example.com',
+  };
+  const webhook = await client.PlatformCore.Webhooks.createWebhook({
+    auth,
+    body,
+  });
+  console.log(webhook);
+};
+
 export const main = async () => {
-  // await updateInbox();
+  // await createWebhook();
 };

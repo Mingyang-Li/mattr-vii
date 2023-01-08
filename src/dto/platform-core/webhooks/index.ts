@@ -1,1 +1,1 @@
-export * from './create-webhook';
+export * as CreateWebhook from './create-webhook';

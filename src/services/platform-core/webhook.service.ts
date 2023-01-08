@@ -1,7 +1,8 @@
+import fetch from 'node-fetch';
 import {
   CreateWebhookArgs,
   CreateWebhookReqResponse,
-} from '@/dto/platform-core/webhooks';
+} from '@/dto/platform-core/webhooks/create-webhook';
 
 const createWebhook = async (
   args: CreateWebhookArgs,
