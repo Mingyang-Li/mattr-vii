@@ -10,8 +10,10 @@ const body: ApiTypes.PlatformCore.Messaging.CreateInbox.CreateInboxReqBody = {
   payload: 'placeholder',
   createdAt: date.toString(),
 };
-const inbox = await client.PlatformCore.Messaging.createInbox({
-  auth: client.auth,
-  body,
-});
+const inbox = await client.PlatformCore.Messaging.createInbox({ auth, body });
+```
+
+```ts
+// List inboxes
+const inboxes = await client.PlatformCore.Messaging.listInboxs({ auth });
 ```

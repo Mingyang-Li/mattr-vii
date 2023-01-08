@@ -71,6 +71,11 @@ export const createInbox = async () => {
   console.log(inbox);
 };
 
+export const listInboxes = async () => {
+  const inboxes = await client.PlatformCore.Messaging.listInboxs({ auth });
+  console.log(inboxes);
+};
+
 export const main = async () => {
-  await createInbox();
+  await listInboxes();
 };

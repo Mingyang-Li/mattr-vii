@@ -64,17 +64,20 @@ const createInbox = async (
 const listInboxs = async (
   args: ListInboxesArgs,
 ): Promise<ListInboxesReqResponse> => {
+  console.log(`args.query === ${args.query}`);
   let url: string;
   switch (args.query) {
     case undefined:
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`;
+      break;
 
     default:
       const query = new URLSearchParams({
-        limit: args.query.limit.toString(),
-        cursor: args.query.cursor,
+        limit: args.query?.limit.toString(),
+        cursor: args.query?.cursor,
       }).toString();
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes?${query}`;
+      break;
   }
   const resp = await fetch(url, {
     method: 'GET',
