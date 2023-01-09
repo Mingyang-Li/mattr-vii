@@ -149,7 +149,8 @@ export const sendMessage = async () => {
     to: 'did:key:recipient_DID',
     message: 'encrypted_message',
   };
-  return await client.PlatformCore.Messaging.sendMessage({ auth, body });
+  const res = await client.PlatformCore.Messaging.sendMessage({ auth, body });
+  console.log(res);
 };
 
 export const main = async () => {
