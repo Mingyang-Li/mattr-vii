@@ -1,8 +1,11 @@
-import { UpdateInboxReqBody } from '@/dto/platform-core/messaging/update-inbox/update-inbox-req-body';
+import {
+  UpdateInboxReqQuery,
+  UpdateInboxReqBody,
+} from '@/dto/platform-core/messaging';
 import { IAuth } from '@/dto/setup';
 
 export interface UpdateInboxArgs {
   auth: IAuth;
-  query: { inboxId: string };
+  query: UpdateInboxReqQuery;
   body: UpdateInboxReqBody;
 }
