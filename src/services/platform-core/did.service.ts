@@ -67,7 +67,7 @@ const resolveDid = async (
   return await resp.json();
 };
 
-const deleteDid = async (args: DeleteDidArgs) => {
+const deleteDid = async (args: DeleteDidArgs): Promise<void> => {
   const resp = await fetch(
     `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
     {

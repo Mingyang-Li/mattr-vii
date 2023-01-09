@@ -10,7 +10,7 @@
     "url": "https://github.com/Mingyang-Li/mattr-vii.git"
   },
   "main": "dist/client.js",
-  "types": "dist/client.d.ts",
+  "types": "dist/types.d.ts",
   "files": [
     "dist",
     "src"

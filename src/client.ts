@@ -2,7 +2,6 @@ import { IAuth, IMattrViiClient } from '@/dto/setup';
 import * as DidServices from '@/services/platform-core/did.service';
 import * as MessagingServices from '@/services/platform-core/messaging.service';
 import * as WebhookServices from '@/services/platform-core/webhook.service';
-import * as ApiTypes from '@/dto';
 
 export class MattrViiClient implements IMattrViiClient {
   constructor(public readonly auth: IAuth) {}
@@ -34,5 +33,3 @@ export class MattrViiClient implements IMattrViiClient {
     };
   }
 }
-
-export { ApiTypes };
