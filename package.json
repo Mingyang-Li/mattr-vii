@@ -1,15 +1,15 @@
 {
   "name": "mattr-vii-client",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
-  "description": "A JavaScript client making it easier to interact with APIs across MATTR VII platform",
+  "description": "🚢 Non-official Platform SDK making it easier for teams to interact with MATTR VII APIs",
   "author": "Mingyang-Li",
   "homepage": "https://github.com/Mingyang-Li/mattr-vii/",
   "repository": {
     "type": "git",
     "url": "https://github.com/Mingyang-Li/mattr-vii.git"
   },
-  "main": "dist/client.js",
+  "main": "dist/main.js",
   "types": "dist/types.d.ts",
   "files": [
     "dist",
