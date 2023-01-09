@@ -3,6 +3,5 @@ import { IAuth } from '@/dto/setup';
 
 export interface ListInboxDidsArgs {
   auth: IAuth;
-  inboxId: string;
-  query?: ListInboxDidsReqQuery;
+  query: ListInboxDidsReqQuery;
 }

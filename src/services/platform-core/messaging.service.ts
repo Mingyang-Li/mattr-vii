@@ -132,16 +132,17 @@ const registerDidwithInbox = async (
 const listInboxDids = async (
   args: ListInboxDidsArgs,
 ): Promise<ListInboxDidsReqResponse> => {
+  const pagination = args.query.pagination;
   let url: string;
-  switch (args.query) {
+  switch (pagination) {
     case undefined:
-      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.inboxId}/dids`;
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}/dids`;
     default:
       const query = new URLSearchParams({
-        limit: args.query.limit.toString(),
-        cursor: args.query.cursor,
+        limit: pagination.toString(),
+        cursor: pagination.cursor,
       }).toString();
-      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.inboxId}/dids?${query}`;
+      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}/dids?${query}`;
   }
   const resp = await fetch(url, {
     method: 'GET',
