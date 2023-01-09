@@ -1,7 +1,9 @@
 import fetch from 'node-fetch';
-import { CreateWebhookArgs } from '@/dto/platform-core/webhooks/create-webhook';
-import { GetWEebhookArgs } from '@/dto/platform-core/webhooks/get-webhooks';
-import { Webhook } from '@/dto/platform-core/webhooks';
+import {
+  Webhook,
+  CreateWebhookArgs,
+  GetWebhooksArgs,
+} from '@/dto/platform-core/webhooks';
 
 const createWebhook = async (args: CreateWebhookArgs): Promise<Webhook> => {
   const resp = await fetch(
@@ -18,16 +20,17 @@ const createWebhook = async (args: CreateWebhookArgs): Promise<Webhook> => {
   return await resp.json();
 };
 
-const getWebhooks = async (args: GetWEebhookArgs) => {
+const getWebhooks = async (args: GetWebhooksArgs) => {
   let url = '';
-  switch (args.query) {
+  const pagination = args.query.pagination;
+  switch (pagination) {
     case undefined:
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/webhooks`;
       break;
     default:
       const query = new URLSearchParams({
-        limit: args.query.limit.toString(),
-        cursor: args.query.cursor,
+        limit: pagination.limit.toString(),
+        cursor: pagination.cursor,
       });
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/webhooks?${query}`;
   }

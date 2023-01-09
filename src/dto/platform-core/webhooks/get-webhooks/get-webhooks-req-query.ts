@@ -1,4 +1,5 @@
+import { Pagination } from '@/dto/common';
+
 export interface GetWebhooksReqQuery {
-  limit: number;
-  cursor: string;
+  pagination?: Pagination;
 }

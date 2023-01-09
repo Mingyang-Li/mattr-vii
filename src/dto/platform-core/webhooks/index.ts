@@ -1,3 +1,3 @@
 export * from './Webhook';
-export * as CreateWebhook from './create-webhook';
-export * as GetWebhooks from './get-webhooks';
+export * from './create-webhook';
+export * from './get-webhooks';

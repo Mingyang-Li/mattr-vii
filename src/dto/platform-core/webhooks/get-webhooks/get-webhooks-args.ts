@@ -1,9 +1,7 @@
+import { GetWebhooksReqQuery } from '@/dto/platform-core/webhooks/get-webhooks/get-webhooks-req-query';
 import { IAuth } from '@/dto/setup';
 
-export interface GetWEebhookArgs {
+export interface GetWebhooksArgs {
   auth: IAuth;
-  query?: {
-    limit: number;
-    cursor: string;
-  };
+  query: GetWebhooksReqQuery;
 }
