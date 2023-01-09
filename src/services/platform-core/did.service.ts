@@ -32,13 +32,14 @@ const retrieveDids = async (
   args: RetrieveDidsArgs,
 ): Promise<RetrieveDidsReqResponse> => {
   let url: string;
-  switch (args.query) {
+  const pagination = args.query.pagination;
+  switch (pagination) {
     case undefined:
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
     default:
       const query = new URLSearchParams({
-        limit: args.query ? args.query.limit.toString() : '2',
-        cursor: args.query ? args.query.cursor : '',
+        limit: pagination ? pagination.limit.toString() : '100',
+        cursor: pagination ? pagination.cursor : '',
       }).toString();
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
   }
