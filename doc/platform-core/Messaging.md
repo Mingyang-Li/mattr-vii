@@ -71,6 +71,11 @@ const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
 
 ```ts
 // Sign a message
+const body: ApiTypes.PlatformCore.Messaging.SignMessageReqBody = {
+  didUrl: 'did:key:placeholder',
+  payload: 'placeholder',
+};
+const res = await client.PlatformCore.Messaging.signMessage({ auth, body });
 ```
 
 ```ts
