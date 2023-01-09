@@ -103,7 +103,7 @@ const updateInbox = async (
 };
 const deleteInbox = async (args: DeleteInboxArgs): Promise<void> => {
   const resp = await fetch(
-    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.id}`,
+    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes/${args.query.inboxId}`,
     {
       method: 'DELETE',
       headers: {
