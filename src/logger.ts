@@ -122,6 +122,36 @@ export const getWebhooks = async () => {
   console.log(webhooks);
 };
 
+export const signMessage = async () => {
+  const body: ApiTypes.PlatformCore.Messaging.SignMessageReqBody = {
+    didUrl: 'did:key:placeholder',
+    payload: 'placeholder',
+  };
+  const res = await client.PlatformCore.Messaging.signMessage({ auth, body });
+  console.log(res);
+};
+
+export const encryptMessage = async () => {
+  const body: ApiTypes.PlatformCore.Messaging.EncryptMessageReqBody = {
+    senderDidUrl: 'did:key:sender_DID',
+    recipientDidUrls: ['did:key:recipient_DID_1', 'did:key:recipient_DID_2'],
+    payload: 'PLACEHOLDER',
+  };
+  const res = await client.PlatformCore.Messaging.encryptMessage({
+    auth,
+    body,
+  });
+  console.log(res);
+};
+
+export const sendMessage = async () => {
+  const body: ApiTypes.PlatformCore.Messaging.SendMessageReqBody = {
+    to: 'did:key:recipient_DID',
+    message: 'encrypted_message',
+  };
+  return await client.PlatformCore.Messaging.sendMessage({ auth, body });
+};
+
 export const main = async () => {
   // await getWebhooks();
 };
