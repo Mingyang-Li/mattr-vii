@@ -153,6 +153,18 @@ export const sendMessage = async () => {
   console.log(res);
 };
 
+export const deleteMessage = async () => {
+  const query: ApiTypes.PlatformCore.Messaging.DeleteMessageReqQuery = {
+    inboxId: 'your-inbox-id',
+    messageId: 'your-inbox-id',
+  };
+  const res = await client.PlatformCore.Messaging.deleteMessage({
+    auth,
+    query,
+  });
+  console.log(res);
+};
+
 export const main = async () => {
   // await getWebhooks();
 };
