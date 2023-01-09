@@ -7,67 +7,6 @@ Interacting with [MATRR VII API platform](https://learn.mattr.global/api-referen
 
 ## 🔑 The problem we're solving:
 Simplifying API calls to MATTR VII by giving you code autocompletion for making requests & return data-types.
-```ts
-/*
-Example use-case:
-=== Send a verifiable credential to a Digital Wallet ===
-
-Main steps:
-1. Create a DID
-2. Create a Credential using the DID created
-3. Sign a message using the Credential you just created
-4. Encrypt the signed message
-5. Send the message to a wallet
-*/
-
-// 💩 Before 💩
-// ❌ Raw API calls
-const url = `https://${process.env.MATTR_TENANT}.vii.mattr.global/core/v1`;
-const createDid = async () => {
-  const res = await fetch(`${url}/dids`, {
-    method: "post",
-    headers: {
-      "Content-type": "application/json",
-      Authorization: 'Bearer <YOUR_JWT_HERE>',
-    },
-    // ❌ You have no idea if the body you passed in is what the endpoint expects
-    body: JSON.stringify({
-      method: 'key',
-      options: {keyType: 'ed25519'},
-    }),
-  });
-  return res.json();
-  // ❌ You have no clue how big & nested your response will be...
-}
-
-
-// ✅ Now with our SDK ✅
-/* main.ts */
-import { MattrViiClient, ApiTypes } from 'mattr-vii-client';
-
-// ✅ Initialise the SDK once and use it across your backend
-// ✅ Minimal environment variables required
-const client = new MattrViiClient({
-  tenantUrl: process.env.MATTR_TENANT_URL,
-  authToken: process.env.MATTR_AUTH_TOKEN,
-});
-
-const auth = client.auth;
-
-export const createDid = async () => {
-  // ✅ Tells you exactly the shape of your request body
-  const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
-    method: 'key',
-    options: {
-      keyType: 'ed25519',
-    },
-  };
-  // ✅ Auto-completion helps you figuring out which method to call
-  // ✅ Enforcing you to pass in the correct body for each request
-  // ✅ Has a response type
-  return await client.PlatformCore.DIDs.createDid({ auth, body });
-}
-```
 
 ##  📚 Usage:
 Install the SDK
@@ -127,7 +66,7 @@ export class UserController {
       },
     };
     const did = await this.mattrService.PlatformCore.DIDs.createDid(
-      client.auth,
+      this.mattrService.auth,
       body,
     );
     return await this.prismaService.user.create({
@@ -135,5 +74,68 @@ export class UserController {
       did: did.did,
     })
   }
+}
+```
+
+## ⏰ Use-case example - Then VS now
+```ts
+/*
+Example use-case:
+=== Send a verifiable credential to a Digital Wallet ===
+
+Main steps:
+1. Create a DID
+2. Create a Credential using the DID created
+3. Sign a message using the Credential you just created
+4. Encrypt the signed message
+5. Send the message to a wallet
+*/
+
+// 💩 Before 💩
+// ❌ Raw API calls
+const url = `https://${process.env.MATTR_TENANT}.vii.mattr.global/core/v1`;
+const createDid = async () => {
+  const res = await fetch(`${url}/dids`, {
+    method: "post",
+    headers: {
+      "Content-type": "application/json",
+      Authorization: 'Bearer <YOUR_JWT_HERE>',
+    },
+    // ❌ You have no idea if the body you passed in is what the endpoint expects
+    body: JSON.stringify({
+      method: 'key',
+      options: {keyType: 'ed25519'},
+    }),
+  });
+  return res.json();
+  // ❌ You have no clue how big & nested your response will be...
+}
+
+
+// ✅ Now with our SDK ✅
+/* main.ts */
+import { MattrViiClient, ApiTypes } from 'mattr-vii-client';
+
+// ✅ Initialise the SDK once and use it across your backend
+// ✅ Minimal environment variables required
+const client = new MattrViiClient({
+  tenantUrl: process.env.MATTR_TENANT_URL,
+  authToken: process.env.MATTR_AUTH_TOKEN,
+});
+
+const auth = client.auth;
+
+export const createDid = async () => {
+  // ✅ Tells you exactly the shape of your request body
+  const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
+    method: 'key',
+    options: {
+      keyType: 'ed25519',
+    },
+  };
+  // ✅ Auto-completion helps you figuring out which method to call
+  // ✅ Enforcing you to pass in the correct body for each request
+  // ✅ Has a response type
+  return await client.PlatformCore.DIDs.createDid({ auth, body });
 }
 ```
