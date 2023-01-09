@@ -1,10 +1,7 @@
+import { EncryptMessageReqBody } from '@/dto/platform-core/messaging';
 import { IAuth } from '@/dto/setup';
 
 export interface EncryptMessageArgs {
   auth: IAuth;
-  body: {
-    senderDidUrl: string;
-    recipientDidUrls: string[];
-    payload: any;
-  };
+  body: EncryptMessageReqBody;
 }
