@@ -101,4 +101,9 @@ const res = await client.PlatformCore.Messaging.encryptMessage({
 
 ```ts
 // Send a message
+const body: ApiTypes.PlatformCore.Messaging.SendMessageReqBody = {
+  to: 'did:key:recipient_DID',
+  message: 'encrypted_message',
+};
+const res = await client.PlatformCore.Messaging.sendMessage({ auth, body });
 ```
