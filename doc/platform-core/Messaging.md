@@ -84,6 +84,15 @@ const res = await client.PlatformCore.Messaging.signMessage({ auth, body });
 
 ```ts
 // Encrypt a message
+const body: ApiTypes.PlatformCore.Messaging.EncryptMessageReqBody = {
+  senderDidUrl: 'did:key:sender_DID',
+  recipientDidUrls: ['did:key:recipient_DID_1', 'did:key:recipient_DID_2'],
+  payload: 'PLACEHOLDER',
+};
+const res = await client.PlatformCore.Messaging.encryptMessage({
+  auth,
+  body,
+});
 ```
 
 ```ts
