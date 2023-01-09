@@ -1,5 +1,7 @@
+import { IPlatformCore } from '@/dto/setup';
+
 export interface IMattrViiClient {
-  PlatformCore: any;
+  PlatformCore: IPlatformCore;
   WebSemanticCredentials: any;
   CompactCredentials: any;
 }

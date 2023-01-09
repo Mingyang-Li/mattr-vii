@@ -64,7 +64,6 @@ const createInbox = async (
 const listInboxs = async (
   args: ListInboxesArgs,
 ): Promise<ListInboxesReqResponse> => {
-  console.log(`args.query === ${args.query}`);
   let url: string;
   switch (args.query) {
     case undefined:
