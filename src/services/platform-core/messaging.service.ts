@@ -1,47 +1,31 @@
-import { Message } from '@/dto/platform-core/messaging/core';
 import {
   CreateInboxArgs,
   CreateInboxReqResponse,
-} from '@/dto/platform-core/messaging/create-inbox';
-import {
-  DecryptMessageArgs,
-  DecryptMessageReqResponse,
-} from '@/dto/platform-core/messaging/decrypt-message';
-import { DeleteInboxArgs } from '@/dto/platform-core/messaging/delete-inbox';
-import { DeleteMessageArgs } from '@/dto/platform-core/messaging/delete-message';
-import { EncryptMessageArgs } from '@/dto/platform-core/messaging/encrypt-message';
-import {
-  ListInboxDidsArgs,
-  ListInboxDidsReqResponse,
-} from '@/dto/platform-core/messaging/list-inbox-dids';
-import {
-  ListInboxMessagesArgs,
-  ListInboxMessagesReqResponse,
-} from '@/dto/platform-core/messaging/list-inbox-messages';
-import {
   ListInboxesArgs,
   ListInboxesReqResponse,
-} from '@/dto/platform-core/messaging/list-inboxes';
-import {
-  RegisterInboxWithDidArgs,
-  RegisterDidWithInboxReqResponse,
-} from '@/dto/platform-core/messaging/register-did-with-inbox';
-import {
   RetrieveInboxNameArgs,
   RetrieveInboxNameReqResponse,
-} from '@/dto/platform-core/messaging/retrieve-inbox-name';
-import { RetrieveMessageArgs } from '@/dto/platform-core/messaging/retrieve-message';
-import { SendMessageArgs } from '@/dto/platform-core/messaging/send-message';
-import { SignMessageArgs } from '@/dto/platform-core/messaging/sign-message';
-import { UnregisterDidWithinInboxArgs } from '@/dto/platform-core/messaging/unregister-did-within-inbox';
-import {
   UpdateInboxArgs,
   UpdateInboxReqResponse,
-} from '@/dto/platform-core/messaging/update-inbox';
-import {
+  DeleteInboxArgs,
+  RegisterInboxWithDidArgs,
+  RegisterDidWithInboxReqResponse,
+  ListInboxDidsArgs,
+  ListInboxDidsReqResponse,
+  UnregisterDidWithinInboxArgs,
+  ListInboxMessagesArgs,
+  ListInboxMessagesReqResponse,
+  RetrieveMessageArgs,
+  Message,
+  DeleteMessageArgs,
+  SignMessageArgs,
   VerifyMessageArgs,
   VerifyMessageReqResponse,
-} from '@/dto/platform-core/messaging/verify-message';
+  EncryptMessageArgs,
+  DecryptMessageArgs,
+  DecryptMessageReqResponse,
+  SendMessageArgs,
+} from '@/dto/platform-core/messaging';
 import fetch from 'node-fetch';
 
 const createInbox = async (
