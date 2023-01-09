@@ -165,6 +165,17 @@ export const deleteMessage = async () => {
   console.log(res);
 };
 
+export const listInboxMessages = async () => {
+  const query: ApiTypes.PlatformCore.Messaging.ListInboxMessagesReqQuery = {
+    inboxId: 'your-inbox-id',
+  };
+  const res = await client.PlatformCore.Messaging.listInboxMessages({
+    auth,
+    query,
+  });
+  console.log(res);
+};
+
 export const main = async () => {
   // await getWebhooks();
 };

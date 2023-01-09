@@ -59,6 +59,10 @@ const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
 
 ```ts
 // List inbox messages
+const query: ApiTypes.PlatformCore.Messaging.ListInboxMessagesReqQuery = {
+  inboxId: 'your-inbox-id',
+};
+const res = await client.PlatformCore.Messaging.listInboxMessages({ auth, query });
 ```
 
 ```ts
