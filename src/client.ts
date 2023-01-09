@@ -1,4 +1,4 @@
-import { IAuth, IMattrViiClient } from '@/dto/setup';
+import { IAuth, IMattrViiClient, IPlatformCore } from '@/dto/setup';
 import * as DidServices from '@/services/platform-core/did.service';
 import * as MessagingServices from '@/services/platform-core/messaging.service';
 import * as WebhookServices from '@/services/platform-core/webhook.service';
@@ -6,7 +6,7 @@ import * as WebhookServices from '@/services/platform-core/webhook.service';
 export class MattrViiClient implements IMattrViiClient {
   constructor(public readonly auth: IAuth) {}
 
-  public get PlatformCore() {
+  public get PlatformCore(): IPlatformCore {
     return {
       DIDs: DidServices,
       Messaging: MessagingServices,
