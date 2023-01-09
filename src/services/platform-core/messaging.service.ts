@@ -49,15 +49,16 @@ const listInboxs = async (
   args: ListInboxesArgs,
 ): Promise<ListInboxesReqResponse> => {
   let url: string;
-  switch (args.query) {
+  const pagination = args.query.pagination;
+  switch (pagination) {
     case undefined:
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes`;
       break;
 
     default:
       const query = new URLSearchParams({
-        limit: args.query?.limit.toString(),
-        cursor: args.query?.cursor,
+        limit: pagination?.limit.toString(),
+        cursor: pagination?.cursor,
       }).toString();
       url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/messaging/inboxes?${query}`;
       break;

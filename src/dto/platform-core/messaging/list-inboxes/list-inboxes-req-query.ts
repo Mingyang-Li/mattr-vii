@@ -1,4 +1,5 @@
+import { Pagination } from '@/dto/common';
+
 export interface ListInboxesReqQuery {
-  limit: number;
-  cursor: string;
+  pagination?: Pagination;
 }
