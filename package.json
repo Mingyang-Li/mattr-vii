@@ -1,6 +1,6 @@
 {
   "name": "mattr-vii-client",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "description": "A JavaScript client making it easier to interact with APIs across MATTR VII platform",
   "author": "Mingyang-Li",
@@ -11,6 +11,10 @@
   },
   "main": "dist/client.js",
   "types": "dist/client.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
   "keywords": [
     "sdk",
     "nestjs",
