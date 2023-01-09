@@ -58,7 +58,7 @@ export const retrieveDids = async () => {
 
 export const createInbox = async () => {
   const date = new Date();
-  const body: ApiTypes.PlatformCore.Messaging.CreateInbox.CreateInboxReqBody = {
+  const body: ApiTypes.PlatformCore.Messaging.CreateInboxReqBody = {
     id: 'placeholder',
     inboxId: 'placeholder',
     payload: 'placeholder',

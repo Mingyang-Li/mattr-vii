@@ -4,7 +4,7 @@ Example usage:
 ```ts
 // Create an inbox
 const date = new Date();
-const body: ApiTypes.PlatformCore.Messaging.CreateInbox.CreateInboxReqBody = {
+const body: ApiTypes.PlatformCore.Messaging.CreateInboxReqBody = {
   id: 'placeholder',
   inboxId: 'placeholder',
   payload: 'placeholder',
