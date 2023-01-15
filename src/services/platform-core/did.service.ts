@@ -30,16 +30,15 @@ const createDid =
 
 const retrieveDids =
   (auth: IAuth) =>
-  async (args: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
+  async (args?: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
     let url: string;
-    const pagination = args.query.pagination;
-    switch (pagination) {
+    switch (args) {
       case undefined:
         url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
       default:
         const query = new URLSearchParams({
-          limit: pagination ? pagination.limit.toString() : '100',
-          cursor: pagination ? pagination.cursor : '',
+          limit: args ? args?.query.pagination.limit.toString() : '1000',
+          cursor: args ? args?.query.pagination.cursor : '',
         }).toString();
         url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
     }

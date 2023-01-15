@@ -11,7 +11,7 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     keyType: 'ed25519',
   },
 };
-const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+const did = await client.PlatformCore.DIDs.createDid({ body });
 ```
 
 ```ts
@@ -22,7 +22,7 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     keyType: 'bls12381g2',
   },
 };
-const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+const did = await client.PlatformCore.DIDs.createDid({ body });
 ```
 
 ```ts
@@ -33,17 +33,17 @@ const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
     url: 'example.com',
   },
 };
-const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+const did = await client.PlatformCore.DIDs.createDid({ body });
 ```
 
 ```ts
 // Resolve a DID
 const id = 'did:key:placeholder';
-const did = await client.PlatformCore.DIDs.resolveDid({ auth, id });
+const did = await client.PlatformCore.DIDs.resolveDid({ id });
 ```
 
 ```ts
 // Retrieve DIDs
 const id = 'did:key:placeholder';
-const dids = await client.PlatformCore.DIDs.retrieveDids({ auth });
+const dids = await client.PlatformCore.DIDs.retrieveDids();
 ```

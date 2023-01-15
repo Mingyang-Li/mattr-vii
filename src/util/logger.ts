@@ -1,6 +1,6 @@
 import { MattrViiClient } from '@/client';
 import { ConfigService } from '@nestjs/config';
-import * as ApiTypes from '@/dto';
+import { ApiTypes } from '@/index';
 
 const config = new ConfigService();
 const client = new MattrViiClient({
@@ -51,7 +51,7 @@ export const resolveDid = async () => {
 };
 
 export const retrieveDids = async () => {
-  const dids = await client.PlatformCore.DIDs.retrieveDids({});
+  const dids = await client.PlatformCore.DIDs.retrieveDids();
   console.log(JSON.stringify(dids));
 };
 
@@ -173,5 +173,5 @@ export const listInboxMessages = async () => {
 };
 
 export const main = async () => {
-  // await getWebhooks();
+  await retrieveDids();
 };
