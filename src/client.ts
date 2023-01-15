@@ -1,4 +1,4 @@
-import { IAuth, IMattrViiClient, IPlatformCore } from '@/dto/setup';
+import { IAuth, IMattrViiClient } from '@/dto/setup';
 import {
   DidService,
   MessagingService,
@@ -8,7 +8,7 @@ import {
 export class MattrViiClient implements IMattrViiClient {
   constructor(public readonly auth: IAuth) {}
 
-  public get PlatformCore(): IPlatformCore {
+  public get PlatformCore() {
     return {
       DIDs: DidService(this.auth),
       Messaging: MessagingService(this.auth),

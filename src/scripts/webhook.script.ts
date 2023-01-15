@@ -11,6 +11,6 @@ export const createWebhook = async () => {
 };
 
 export const getWebhooks = async () => {
-  const webhooks = await client.PlatformCore.Webhooks.getWebhooks({});
+  const webhooks = await client.PlatformCore.Webhooks.getWebhooks();
   console.log(webhooks);
 };

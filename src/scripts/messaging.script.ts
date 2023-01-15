@@ -9,15 +9,12 @@ export const createInbox = async () => {
     payload: 'placeholder',
     createdAt: date.toString(),
   };
-  const inbox = await client.PlatformCore.Messaging.createInbox({
-    auth: client.auth,
-    body,
-  });
+  const inbox = await client.PlatformCore.Messaging.createInbox({ body });
   console.log(inbox);
 };
 
 export const listInboxes = async () => {
-  const inboxes = await client.PlatformCore.Messaging.listInboxs();
+  const inboxes = await client.PlatformCore.Messaging.listInboxs({});
   console.log(inboxes);
 };
 
@@ -41,8 +38,11 @@ export const updateInbox = async () => {
 };
 
 export const deleteInbox = async () => {
+  const query: ApiTypes.PlatformCore.Messaging.DeleteInboxReqQuery = {
+    inboxId: 'your_inbox_id',
+  };
   const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
-    id: 'your_inbox_id',
+    query,
   });
   console.log(deletedInbox);
 };

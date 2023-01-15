@@ -23,28 +23,29 @@ const createWebhook =
     return await resp.json();
   };
 
-const getWebhooks = (auth: IAuth) => async (args: GetWebhooksArgs) => {
-  let url = '';
-  const pagination = args.query?.pagination;
-  switch (pagination) {
-    case undefined:
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/webhooks`;
-      break;
-    default:
-      const query = new URLSearchParams({
-        limit: pagination.limit.toString(),
-        cursor: pagination.cursor,
-      });
-      url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/webhooks?${query}`;
-  }
-  const resp = await fetch(url, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${auth.authToken}`,
-    },
-  });
-  return await resp.json();
-};
+const getWebhooks =
+  (auth: IAuth) =>
+  async (args?: GetWebhooksArgs): Promise<Webhook> => {
+    let url = '';
+    switch (args) {
+      case undefined:
+        url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/webhooks`;
+        break;
+      default:
+        const query = new URLSearchParams({
+          limit: args?.query.pagination.limit.toString(),
+          cursor: args?.query.pagination.cursor,
+        });
+        url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/webhooks?${query}`;
+    }
+    const resp = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+    });
+    return await resp.json();
+  };
 
 const getWebhook = () => {
   return;
