@@ -17,7 +17,7 @@ export const createDid_key = async () => {
       keyType: 'ed25519',
     },
   };
-  const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+  const did = await client.PlatformCore.DIDs.createDid({ body });
   console.log(did);
 };
 
@@ -28,7 +28,7 @@ export const createDid_ion = async () => {
       keyType: 'bls12381g2',
     },
   };
-  const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+  const did = await client.PlatformCore.DIDs.createDid({ body });
   console.log(JSON.stringify(did));
 };
 
@@ -39,20 +39,19 @@ export const createDid_web = async () => {
       url: 'example.com',
     },
   };
-  const did = await client.PlatformCore.DIDs.createDid({ auth, body });
+  const did = await client.PlatformCore.DIDs.createDid({ body });
   console.log(JSON.stringify(did));
 };
 
 export const resolveDid = async () => {
   const did = await client.PlatformCore.DIDs.resolveDid({
-    auth,
     id: 'did:key:z6MkmWBp7BHangrddxzTtEk7ypqJgnDC892iabgijN2GCnGR',
   });
   console.log(JSON.stringify(did));
 };
 
 export const retrieveDids = async () => {
-  const dids = await client.PlatformCore.DIDs.retrieveDids({ auth });
+  const dids = await client.PlatformCore.DIDs.retrieveDids({});
   console.log(JSON.stringify(dids));
 };
 
@@ -177,5 +176,5 @@ export const listInboxMessages = async () => {
 };
 
 export const main = async () => {
-  // await getWebhooks();
+  // await createDid_key();
 };

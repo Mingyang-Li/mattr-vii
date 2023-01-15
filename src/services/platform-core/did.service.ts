@@ -11,75 +11,77 @@ import {
 import { IAuth } from '@/dto/setup';
 import fetch from 'node-fetch';
 
-const createDid = async (
-  args: CreateDidArgs,
-): Promise<CreateDidReqResponse> => {
-  const resp = await fetch(
-    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${args.auth.authToken}`,
+const createDid =
+  (auth: IAuth) =>
+  async (args: CreateDidArgs): Promise<CreateDidReqResponse> => {
+    const resp = await fetch(
+      `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${auth.authToken}`,
+        },
+        body: JSON.stringify(args.body),
       },
-      body: JSON.stringify(args.body),
-    },
-  );
-  return await resp.json();
-};
+    );
+    return await resp.json();
+  };
 
-const retrieveDids = async (
-  args: RetrieveDidsArgs,
-): Promise<RetrieveDidsReqResponse> => {
-  let url: string;
-  const pagination = args.query.pagination;
-  switch (pagination) {
-    case undefined:
-      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
-    default:
-      const query = new URLSearchParams({
-        limit: pagination ? pagination.limit.toString() : '100',
-        cursor: pagination ? pagination.cursor : '',
-      }).toString();
-      url = `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
-  }
-  const resp = await fetch(url, {
-    method: 'GET',
-    headers: {
-      Authorization: `Bearer ${args.auth.authToken}`,
-    },
-  });
-
-  return await resp.json();
-};
-
-const resolveDid = async (
-  args: ResolveDidArgs,
-): Promise<ResolveDidReqResponse> => {
-  const resp = await fetch(
-    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
-    {
+const retrieveDids =
+  (auth: IAuth) =>
+  async (args: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
+    let url: string;
+    const pagination = args.query.pagination;
+    switch (pagination) {
+      case undefined:
+        url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
+      default:
+        const query = new URLSearchParams({
+          limit: pagination ? pagination.limit.toString() : '100',
+          cursor: pagination ? pagination.cursor : '',
+        }).toString();
+        url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
+    }
+    const resp = await fetch(url, {
       method: 'GET',
       headers: {
-        Authorization: `Bearer ${args.auth.authToken}`,
+        Authorization: `Bearer ${auth.authToken}`,
       },
-    },
-  );
-  return await resp.json();
-};
+    });
 
-const deleteDid = async (args: DeleteDidArgs): Promise<void> => {
-  const resp = await fetch(
-    `https://${args.auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${args.auth.authToken}`,
+    return await resp.json();
+  };
+
+const resolveDid =
+  (auth: IAuth) =>
+  async (args: ResolveDidArgs): Promise<ResolveDidReqResponse> => {
+    const resp = await fetch(
+      `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${auth.authToken}`,
+        },
       },
-    },
-  );
-  return await resp.json();
-};
+    );
+    return await resp.json();
+  };
+
+const deleteDid =
+  (auth: IAuth) =>
+  async (args: DeleteDidArgs): Promise<void> => {
+    const resp = await fetch(
+      `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${auth.authToken}`,
+        },
+      },
+    );
+    return await resp.json();
+  };
 
 const wellKnownDidConfiguration = async (
   auth: IAuth,
@@ -90,6 +92,16 @@ const wellKnownDidConfiguration = async (
   );
 
   return await resp.json();
+};
+
+export const DidService = (auth: IAuth) => {
+  return {
+    createDid: createDid(auth),
+    retrieveDids: retrieveDids(auth),
+    resolveDid: resolveDid(auth),
+    deleteDid: deleteDid(auth),
+    wellKnownDidConfiguration: wellKnownDidConfiguration(auth),
+  };
 };
 
 export {
