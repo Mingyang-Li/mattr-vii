@@ -109,15 +109,12 @@ export const createWebhook = async () => {
     events: ['OidcIssuerCredentialIssued'],
     url: 'https://example.com',
   };
-  const webhook = await client.PlatformCore.Webhooks.createWebhook({
-    auth,
-    body,
-  });
+  const webhook = await client.PlatformCore.Webhooks.createWebhook({ body });
   console.log(webhook);
 };
 
 export const getWebhooks = async () => {
-  const webhooks = await client.PlatformCore.Webhooks.getWebhooks({ auth });
+  const webhooks = await client.PlatformCore.Webhooks.getWebhooks({});
   console.log(webhooks);
 };
 
@@ -176,5 +173,5 @@ export const listInboxMessages = async () => {
 };
 
 export const main = async () => {
-  // await createDid_key();
+  // await getWebhooks();
 };

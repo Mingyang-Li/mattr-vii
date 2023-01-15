@@ -103,11 +103,3 @@ export const DidService = (auth: IAuth) => {
     wellKnownDidConfiguration: wellKnownDidConfiguration(auth),
   };
 };
-
-export {
-  createDid,
-  retrieveDids,
-  resolveDid,
-  deleteDid,
-  wellKnownDidConfiguration,
-};
