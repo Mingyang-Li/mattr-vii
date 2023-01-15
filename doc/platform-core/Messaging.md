@@ -10,19 +10,18 @@ const body: ApiTypes.PlatformCore.Messaging.CreateInboxReqBody = {
   payload: 'placeholder',
   createdAt: date.toString(),
 };
-const inbox = await client.PlatformCore.Messaging.createInbox({ auth, body });
+const inbox = await client.PlatformCore.Messaging.createInbox({ body });
 ```
 
 ```ts
 // List inboxes
-const inboxes = await client.PlatformCore.Messaging.listInboxs({ auth });
+const inboxes = await client.PlatformCore.Messaging.listInboxs();
 ```
 
 ```ts
 // Retrieve inbox name
 const inboxId = '4c8b950f-fc52-49d6-9644-fc82edeae5f2';
 const inboxName = await client.PlatformCore.Messaging.retrieveInboxName({
-  auth,
   query: { inboxId },
 });
 ```
@@ -31,7 +30,6 @@ const inboxName = await client.PlatformCore.Messaging.retrieveInboxName({
 // Update inbox
 const inboxId = '4c8b950f-fc52-49d6-9644-fc82edeae5f2';
 const updatedInbox = await client.PlatformCore.Messaging.updateInbox({
-  auth,
   query: { inboxId },
   body: { name: 'Inbox-1' },
 });
@@ -40,7 +38,6 @@ const updatedInbox = await client.PlatformCore.Messaging.updateInbox({
 ```ts
 // Delete an inbox
 const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
-  auth,
   id: 'your_inbox_id',
 });
 ```
@@ -62,7 +59,7 @@ const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
 const query: ApiTypes.PlatformCore.Messaging.ListInboxMessagesReqQuery = {
   inboxId: 'your-inbox-id',
 };
-const res = await client.PlatformCore.Messaging.listInboxMessages({ auth, query });
+const res = await client.PlatformCore.Messaging.listInboxMessages({ query });
 ```
 
 ```ts
@@ -75,7 +72,7 @@ const query: ApiTypes.PlatformCore.Messaging.DeleteMessageReqQuery = {
   inboxId: 'your-inbox-id',
   messageId: 'your-inbox-id',
 };
-const res = await client.PlatformCore.Messaging.deleteMessage({ auth, query });
+const res = await client.PlatformCore.Messaging.deleteMessage({ query });
 ```
 
 ```ts
@@ -84,11 +81,15 @@ const body: ApiTypes.PlatformCore.Messaging.SignMessageReqBody = {
   didUrl: 'did:key:placeholder',
   payload: 'placeholder',
 };
-const res = await client.PlatformCore.Messaging.signMessage({ auth, body });
+const res = await client.PlatformCore.Messaging.signMessage({ body });
 ```
 
 ```ts
 // Verify a message
+const body: ApiTypes.PlatformCore.Messaging.VerifyMessageReqBody = {
+  jws: 'placeholder',
+};
+const res = await client.PlatformCore.Messaging.verifyMessage({ body });
 ```
 
 ```ts
@@ -98,10 +99,7 @@ const body: ApiTypes.PlatformCore.Messaging.EncryptMessageReqBody = {
   recipientDidUrls: ['did:key:recipient_DID_1', 'did:key:recipient_DID_2'],
   payload: 'PLACEHOLDER',
 };
-const res = await client.PlatformCore.Messaging.encryptMessage({
-  auth,
-  body,
-});
+const res = await client.PlatformCore.Messaging.encryptMessage({ body });
 ```
 
 ```ts
@@ -114,5 +112,5 @@ const body: ApiTypes.PlatformCore.Messaging.SendMessageReqBody = {
   to: 'did:key:recipient_DID',
   message: 'encrypted_message',
 };
-const res = await client.PlatformCore.Messaging.sendMessage({ auth, body });
+const res = await client.PlatformCore.Messaging.sendMessage({ body });
 ```
