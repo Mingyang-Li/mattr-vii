@@ -27,9 +27,6 @@ const client = new MattrViiClient({
   tenantUrl: process.env.MATTR_TENANT_URL,
   authToken: process.env.MATTR_AUTH_TOKEN,
 });
-
-// optional
-const auth = client.auth;
 ```
 
 ## ‍🏫 Start using the SDK following these guidelines:
@@ -65,10 +62,7 @@ export class UserController {
         keyType: 'ed25519',
       },
     };
-    const did = await this.mattrService.PlatformCore.DIDs.createDid(
-      this.mattrService.auth,
-      body,
-    );
+    const did = await this.mattrService.PlatformCore.DIDs.createDid(body);
     return await this.prismaService.user.create({
       ...args,
       did: did.did,
@@ -123,8 +117,6 @@ const client = new MattrViiClient({
   authToken: process.env.MATTR_AUTH_TOKEN,
 });
 
-const auth = client.auth;
-
 export const createDid = async () => {
   // ✅ Tells you exactly the shape of your request body
   const body: ApiTypes.PlatformCore.DIDs.CreateDidReqBody = {
@@ -136,6 +128,6 @@ export const createDid = async () => {
   // ✅ Auto-completion helps you figuring out which method to call
   // ✅ Enforcing you to pass in the correct body for each request
   // ✅ Has a response type
-  return await client.PlatformCore.DIDs.createDid({ auth, body });
+  return await client.PlatformCore.DIDs.createDid({ body });
 }
 ```
