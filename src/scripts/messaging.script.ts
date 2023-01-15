@@ -99,3 +99,11 @@ export const listInboxMessages = async () => {
   const res = await client.PlatformCore.Messaging.listInboxMessages({ query });
   console.log(res);
 };
+
+export const decryptMessage = async () => {
+  const body: ApiTypes.PlatformCore.Messaging.DecryptMessageReqBody = {
+    jwe: 'placeholder',
+  };
+  const res = await client.PlatformCore.Messaging.decryptMessage({ body });
+  console.log(res);
+};

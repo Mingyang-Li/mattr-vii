@@ -104,6 +104,10 @@ const res = await client.PlatformCore.Messaging.encryptMessage({ body });
 
 ```ts
 // Decrypt a message
+const body: ApiTypes.PlatformCore.Messaging.DecryptMessageReqBody = {
+  jwe: 'placeholder',
+};
+const res = await client.PlatformCore.Messaging.decryptMessage({ body });
 ```
 
 ```ts
