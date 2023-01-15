@@ -3,6 +3,7 @@ import {
   Webhook,
   CreateWebhookArgs,
   GetWebhooksArgs,
+  GetWebhooksReqResponse,
 } from '@/dto/platform-core/webhooks';
 import { IAuth } from '@/dto/setup';
 
@@ -25,7 +26,7 @@ const createWebhook =
 
 const getWebhooks =
   (auth: IAuth) =>
-  async (args?: GetWebhooksArgs): Promise<Webhook> => {
+  async (args?: GetWebhooksArgs): Promise<GetWebhooksReqResponse> => {
     let url = '';
     switch (args) {
       case undefined:
