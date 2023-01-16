@@ -65,6 +65,11 @@ const res = await client.PlatformCore.Messaging.listInboxMessages({ query });
 
 ```ts
 // Retrieve a message
+const query: ApiTypes.PlatformCore.Messaging.RetrieveMessageReqQuery = {
+  inboxId: 'inbox-id',
+  messageId: 'message-id',
+};
+const res = await client.PlatformCore.Messaging.retrieveMessage({ query });
 ```
 
 ```ts

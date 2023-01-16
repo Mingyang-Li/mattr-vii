@@ -112,3 +112,12 @@ export const listInboxDids = async () => {
   const res = await client.PlatformCore.Messaging.listInboxDids();
   console.log(res);
 };
+
+export const retrieveMessage = async () => {
+  const query: ApiTypes.PlatformCore.Messaging.RetrieveMessageReqQuery = {
+    inboxId: 'inbox-id',
+    messageId: 'message-id',
+  };
+  const res = await client.PlatformCore.Messaging.retrieveMessage({ query });
+  console.log(res);
+};
