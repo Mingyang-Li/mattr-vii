@@ -8,15 +8,12 @@ const body: ApiTypes.PlatformCore.Webhooks.CreateWebhook.CreateWebhookBody = {
   events: ['OidcIssuerCredentialIssued'],
   url: 'https://example.com',
 };
-const webhook = await client.PlatformCore.Webhooks.createWebhook({
-  auth,
-  body,
-});
+const webhook = await client.PlatformCore.Webhooks.createWebhook({ body });
 ```
 
 ```ts
 // Get a list of webhooks
-const webhooks = await client.PlatformCore.Webhooks.getWebhooks({ auth });
+const webhooks = await client.PlatformCore.Webhooks.getWebhooks();
 ```
 
 ```ts

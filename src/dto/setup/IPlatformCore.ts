@@ -1,7 +1,5 @@
-import { IDidService } from '@/dto/setup';
-
 export interface IPlatformCore {
-  DIDs: IDidService;
+  DIDs: any;
   Messaging: any;
   Webhooks: any;
 }

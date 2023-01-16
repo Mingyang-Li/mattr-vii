@@ -11,11 +11,15 @@ import {
 import { IAuth } from '@/dto/setup/IAuth';
 
 export interface IDidService {
-  createDid: (args: CreateDidArgs) => Promise<CreateDidReqResponse>;
-  retrieveDids: (args: RetrieveDidsArgs) => Promise<RetrieveDidsReqResponse>;
-  resolveDid: (args: ResolveDidArgs) => Promise<ResolveDidReqResponse>;
-  deleteDid: (args: DeleteDidArgs) => Promise<void>;
-  wellKnownDidConfiguration: (
+  createDid: (
     auth: IAuth,
-  ) => Promise<WellKnownDidConfigResponse>;
+  ) => (args: CreateDidArgs) => Promise<CreateDidReqResponse>;
+  retrieveDids: (
+    auth: IAuth,
+  ) => (args: RetrieveDidsArgs) => Promise<RetrieveDidsReqResponse>;
+  resolveDid: (
+    auth: IAuth,
+  ) => (args: ResolveDidArgs) => Promise<ResolveDidReqResponse>;
+  deleteDid: (auth: IAuth) => (args: DeleteDidArgs) => Promise<void>;
+  wellKnownDidConfiguration: () => Promise<WellKnownDidConfigResponse>;
 }
