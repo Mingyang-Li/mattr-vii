@@ -58,6 +58,9 @@ const res = await client.PlatformCore.Messaging.listInboxDids();
 
 ```ts
 // Unregister DID within an inbox
+const query: ApiTypes.PlatformCore.Messaging.UnregisterDidWithinInboxReqQuery = { inboxId: 'inbox-id' };
+const body: ApiTypes.PlatformCore.Messaging.UnregisterDidWithinInboxReqBody = { did: 'did:key:placeholder' };
+const res = await client.PlatformCore.Messaging.unregisterDidWithinInbox({ query, body });
 ```
 
 ```ts

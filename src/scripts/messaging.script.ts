@@ -132,3 +132,19 @@ export const registerDidwithInbox = async () => {
   });
   console.log(res);
 };
+
+export const unregisterDidWithinInbox = async () => {
+  const query: ApiTypes.PlatformCore.Messaging.UnregisterDidWithinInboxReqQuery =
+    {
+      inboxId: 'inbox-id',
+    };
+  const body: ApiTypes.PlatformCore.Messaging.UnregisterDidWithinInboxReqBody =
+    {
+      did: 'did:key:placeholder',
+    };
+  const res = await client.PlatformCore.Messaging.unregisterDidWithinInbox({
+    query,
+    body,
+  });
+  console.log(res);
+};
