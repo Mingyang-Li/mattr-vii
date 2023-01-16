@@ -139,7 +139,7 @@ const registerDidwithInbox =
   };
 const listInboxDids =
   (auth: IAuth) =>
-  async (args: ListInboxDidsArgs): Promise<ListInboxDidsReqResponse> => {
+  async (args?: ListInboxDidsArgs): Promise<ListInboxDidsReqResponse> => {
     const pagination = args.query.pagination;
     let url: string;
     switch (pagination) {

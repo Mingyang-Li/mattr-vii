@@ -107,3 +107,8 @@ export const decryptMessage = async () => {
   const res = await client.PlatformCore.Messaging.decryptMessage({ body });
   console.log(res);
 };
+
+export const listInboxDids = async () => {
+  const res = await client.PlatformCore.Messaging.listInboxDids();
+  console.log(res);
+};
