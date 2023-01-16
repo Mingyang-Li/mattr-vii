@@ -44,6 +44,11 @@ const deletedInbox = await client.PlatformCore.Messaging.deleteInbox({
 
 ```ts
 // Register DID with in inbox
+const body: ApiTypes.PlatformCore.Messaging.RegisterDidWithInboxReqBody = {
+  did: 'did:key:placeholder',
+  jwt: 'placeholder',
+};
+const res = await client.PlatformCore.Messaging.registerDidwithInbox({ body });
 ```
 
 ```ts

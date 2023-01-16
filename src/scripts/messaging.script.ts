@@ -121,3 +121,14 @@ export const retrieveMessage = async () => {
   const res = await client.PlatformCore.Messaging.retrieveMessage({ query });
   console.log(res);
 };
+
+export const registerDidwithInbox = async () => {
+  const body: ApiTypes.PlatformCore.Messaging.RegisterDidWithInboxReqBody = {
+    did: 'did:key:placeholder',
+    jwt: 'placeholder',
+  };
+  const res = await client.PlatformCore.Messaging.registerDidwithInbox({
+    body,
+  });
+  console.log(res);
+};
