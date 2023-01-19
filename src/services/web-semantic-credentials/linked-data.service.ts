@@ -6,6 +6,6 @@ const convertLinkedDataDocuments = (auth: IAuth) => async () => {
 
 export const LinkedDataService = (auth: IAuth) => {
   return {
-    createPresentationTemplate: convertLinkedDataDocuments(auth),
+    convertLinkedDataDocuments: convertLinkedDataDocuments(auth),
   };
 };
