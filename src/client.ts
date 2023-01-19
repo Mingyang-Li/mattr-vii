@@ -4,6 +4,11 @@ import {
   MessagingService,
   WebhookService,
 } from '@/services/platform-core';
+import {
+  CredentialService,
+  LinkedDataService,
+  PresentationService,
+} from '@/services/web-semantic-credentials';
 
 export class MattrViiClient implements IMattrViiClient {
   constructor(public readonly auth: IAuth) {}
@@ -18,10 +23,10 @@ export class MattrViiClient implements IMattrViiClient {
 
   public get WebSemanticCredentials() {
     return {
-      Credentials: {},
+      Credentials: CredentialService(this.auth),
       Revocation: {},
-      Presentations: {},
-      LinkedData: {},
+      Presentations: PresentationService(this.auth),
+      LinkedData: LinkedDataService(this.auth),
     };
   }
 
