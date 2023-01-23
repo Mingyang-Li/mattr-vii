@@ -1,4 +1,4 @@
-import { IAuth, IMattrViiClient } from '@/dto/setup';
+import { IAuth } from '@/dto/setup';
 import {
   DidService,
   MessagingService,
@@ -10,7 +10,7 @@ import {
   PresentationService,
 } from '@/services/web-semantic-credentials';
 
-export class MattrViiClient implements IMattrViiClient {
+export class MattrViiClient {
   constructor(public readonly auth: IAuth) {}
 
   public get PlatformCore() {
