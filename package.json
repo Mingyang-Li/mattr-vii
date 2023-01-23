@@ -1,6 +1,6 @@
 {
   "name": "mattr-vii-client",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "license": "MIT",
   "description": "🚢 Non-official Platform SDK making it easier for teams to interact with MATTR VII APIs",
   "author": "Mingyang-Li",
