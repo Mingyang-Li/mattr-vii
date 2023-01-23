@@ -24,7 +24,7 @@ import { MattrViiClient, ApiTypes } from 'mattr-vii-client'
 🔥 Initialise the client
 ```ts
 const client = new MattrViiClient({
-  tenantUrl: process.env.MATTR_TENANT_URL,
+  tenantSubdomain: process.env.MATTR_TENANT_URL,
   authToken: process.env.MATTR_AUTH_TOKEN,
 });
 ```
