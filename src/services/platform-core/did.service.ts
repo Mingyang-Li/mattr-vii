@@ -15,7 +15,7 @@ const createDid =
   (auth: IAuth) =>
   async (args: CreateDidArgs): Promise<CreateDidReqResponse> => {
     const resp = await fetch(
-      `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`,
+      `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/dids`,
       {
         method: 'POST',
         headers: {
@@ -34,13 +34,13 @@ const retrieveDids =
     let url: string;
     switch (args) {
       case undefined:
-        url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids`;
+        url = `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/dids`;
       default:
         const query = new URLSearchParams({
           limit: args ? args?.query.pagination.limit.toString() : '1000',
           cursor: args ? args?.query.pagination.cursor : '',
         }).toString();
-        url = `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids?${query}`;
+        url = `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/dids?${query}`;
     }
     const resp = await fetch(url, {
       method: 'GET',
@@ -56,7 +56,7 @@ const resolveDid =
   (auth: IAuth) =>
   async (args: ResolveDidArgs): Promise<ResolveDidReqResponse> => {
     const resp = await fetch(
-      `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
+      `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/dids/${args.id}`,
       {
         method: 'GET',
         headers: {
@@ -71,7 +71,7 @@ const deleteDid =
   (auth: IAuth) =>
   async (args: DeleteDidArgs): Promise<void> => {
     const resp = await fetch(
-      `https://${auth.tenantUrl}.vii.mattr.global/core/v1/dids/${args.id}`,
+      `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/dids/${args.id}`,
       {
         method: 'DELETE',
         headers: {
@@ -86,7 +86,7 @@ const wellKnownDidConfiguration = async (
   auth: IAuth,
 ): Promise<WellKnownDidConfigResponse> => {
   const resp = await fetch(
-    `https://${auth.tenantUrl}.vii.mattr.global/.well-known/did-configuration`,
+    `https://${auth.tenantSubdomain}.vii.mattr.global/.well-known/did-configuration`,
     { method: 'GET' },
   );
 

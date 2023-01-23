@@ -1,11 +1,17 @@
-import { IAuth, IMattrViiClient } from '@/dto/setup';
+import { IAuth } from '@/dto/setup';
 import {
   DidService,
   MessagingService,
   WebhookService,
 } from '@/services/platform-core';
+import {
+  CredentialService,
+  LinkedDataService,
+  PresentationService,
+  RevocationService,
+} from '@/services/web-semantic-credentials';
 
-export class MattrViiClient implements IMattrViiClient {
+export class MattrViiClient {
   constructor(public readonly auth: IAuth) {}
 
   public get PlatformCore() {
@@ -18,10 +24,10 @@ export class MattrViiClient implements IMattrViiClient {
 
   public get WebSemanticCredentials() {
     return {
-      Credentials: {},
-      Revocation: {},
-      Presentations: {},
-      LinkedData: {},
+      Credentials: CredentialService(this.auth),
+      Revocation: RevocationService(this.auth),
+      Presentations: PresentationService(this.auth),
+      LinkedData: LinkedDataService(this.auth),
     };
   }
 

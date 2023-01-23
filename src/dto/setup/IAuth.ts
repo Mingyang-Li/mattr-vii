@@ -1,4 +1,4 @@
 export interface IAuth {
-  tenantUrl: string;
+  tenantSubdomain: string;
   authToken: string;
 }
