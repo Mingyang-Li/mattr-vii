@@ -41,7 +41,7 @@ const client = new MattrViiClient({
 @Injectable()
 export class MattrService extends MattrViiClient {
   super({
-    tenantUrl: process.env.MATTR_TENANT_URL,
+    tenantSubdomain: process.env.MATTR_TENANT_URL,
     authToken: process.env.MATTR_AUTH_TOKEN,
   })
 }
@@ -113,7 +113,7 @@ import { MattrViiClient, ApiTypes } from 'mattr-vii-client';
 // ✅ Initialise the SDK once and use it across your backend
 // ✅ Minimal environment variables required
 const client = new MattrViiClient({
-  tenantUrl: process.env.MATTR_TENANT_URL,
+  tenantSubdomain: process.env.MATTR_TENANT_URL,
   authToken: process.env.MATTR_AUTH_TOKEN,
 });
 
