@@ -8,6 +8,7 @@ import {
   CredentialService,
   LinkedDataService,
   PresentationService,
+  RevocationService,
 } from '@/services/web-semantic-credentials';
 
 export class MattrViiClient {
@@ -24,7 +25,7 @@ export class MattrViiClient {
   public get WebSemanticCredentials() {
     return {
       Credentials: CredentialService(this.auth),
-      Revocation: {},
+      Revocation: RevocationService(this.auth),
       Presentations: PresentationService(this.auth),
       LinkedData: LinkedDataService(this.auth),
     };
