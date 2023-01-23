@@ -1,4 +1,4 @@
 export default () => ({
-  tenantUrl: process.env.MATTR_TENANT_URL || '',
-  authToken: process.env.MATTR_AUTH_TOKEN || '',
+  MATTR_TENANT_SUBDOMAIN: process.env.MATTR_TENANT_SUBDOMAIN || '',
+  MATTR_AUTH_TOKEN: process.env.MATTR_AUTH_TOKEN || '',
 });

@@ -12,7 +12,7 @@ import {
 } from '@/services/web-semantic-credentials';
 
 export class MattrViiClient {
-  constructor(public readonly auth: IAuth) {}
+  constructor(private readonly auth: IAuth) {}
 
   public get PlatformCore() {
     return {
