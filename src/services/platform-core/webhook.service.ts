@@ -10,17 +10,14 @@ import { IAuth } from '@/dto/setup';
 const createWebhook =
   (auth: IAuth) =>
   async (args: CreateWebhookArgs): Promise<Webhook> => {
-    const resp = await fetch(
-      `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/webhooks`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${auth.authToken}`,
-        },
-        body: JSON.stringify(args.body),
+    const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${auth.authToken}`,
       },
-    );
+      body: JSON.stringify(args.body),
+    });
     return await resp.json();
   };
 
@@ -30,14 +27,14 @@ const getWebhooks =
     let url = '';
     switch (args) {
       case undefined:
-        url = `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/webhooks`;
+        url = `${auth.baseUrl}/core/v1/webhooks`;
         break;
       default:
         const query = new URLSearchParams({
           limit: args?.query.pagination.limit.toString(),
           cursor: args?.query.pagination.cursor,
         });
-        url = `https://${auth.tenantSubdomain}.vii.mattr.global/core/v1/webhooks?${query}`;
+        url = `${auth.baseUrl}/core/v1/webhooks?${query}`;
     }
     const resp = await fetch(url, {
       method: 'GET',
